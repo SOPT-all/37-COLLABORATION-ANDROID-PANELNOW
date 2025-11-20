@@ -9,85 +9,85 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.R
 
-val PANELNOWFontBold = FontFamily(Font(R.font.pretendard_bold))
-val PANELNOWFontSemiBold = FontFamily(Font(R.font.pretendard_semibold))
-val PANELNOWFontMedium = FontFamily(Font(R.font.pretendard_medium))
-val PANELNOWFontRegular = FontFamily(Font(R.font.pretendard_regular))
+val PanelNowFontBold = FontFamily(Font(R.font.pretendard_bold))
+val PanelNowFontSemiBold = FontFamily(Font(R.font.pretendard_semibold))
+val PanelNowFontMedium = FontFamily(Font(R.font.pretendard_medium))
+val PanelNowFontRegular = FontFamily(Font(R.font.pretendard_regular))
 
 @Immutable
-data class PANELNOWTypography(
-    val title_bd_24: TextStyle,
-    val title_sb_20: TextStyle,
-    val title_sb_16: TextStyle,
-    val title_m_14: TextStyle,
-    val title_m_12: TextStyle,
+data class PanelNowTypography(
+    val titleBd24: TextStyle,
+    val titleSb20: TextStyle,
+    val titleSb16: TextStyle,
+    val titleM14: TextStyle,
+    val titleM12: TextStyle,
 
-    val body_r_16: TextStyle,
-    val body_r_14: TextStyle,
-    val body_m_12: TextStyle,
-    val body_m_10: TextStyle
+    val bodyR16: TextStyle,
+    val bodyR14: TextStyle,
+    val bodyM12: TextStyle,
+    val bodyM10: TextStyle
 )
 
-val defaultPANELNOWTypography = PANELNOWTypography(
-    title_bd_24 = TextStyle(
-        fontFamily = PANELNOWFontBold,
+val defaultPanelNowTypography = PanelNowTypography(
+    titleBd24 = TextStyle(
+        fontFamily = PanelNowFontBold,
         fontWeight = FontWeight.W700,
         fontSize = 24.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp
     ),
-    title_sb_20 = TextStyle(
-        fontFamily = PANELNOWFontSemiBold,
+    titleSb20 = TextStyle(
+        fontFamily = PanelNowFontSemiBold,
         fontWeight = FontWeight.W600,
         fontSize = 20.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.sp
     ),
-    title_sb_16 = TextStyle(
-        fontFamily = PANELNOWFontSemiBold,
+    titleSb16 = TextStyle(
+        fontFamily = PanelNowFontSemiBold,
         fontWeight = FontWeight.W600,
         fontSize = 16.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     ),
-    title_m_14 = TextStyle(
-        fontFamily = PANELNOWFontMedium,
+    titleM14 = TextStyle(
+        fontFamily = PanelNowFontMedium,
         fontWeight = FontWeight.W500,
         fontSize = 14.sp,
         lineHeight = 12.6.sp,
         letterSpacing = 0.sp
     ),
-    title_m_12 = TextStyle(
-        fontFamily = PANELNOWFontMedium,
+    titleM12 = TextStyle(
+        fontFamily = PanelNowFontMedium,
         fontWeight = FontWeight.W500,
         fontSize = 12.sp,
         lineHeight = 12.sp,
         letterSpacing = 0.sp
     ),
 
-    body_r_16 = TextStyle(
-        fontFamily = PANELNOWFontRegular,
+    bodyR16 = TextStyle(
+        fontFamily = PanelNowFontRegular,
         fontWeight = FontWeight.W400,
         fontSize = 16.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.sp
     ),
-    body_r_14 = TextStyle(
-        fontFamily = PANELNOWFontRegular,
+    bodyR14 = TextStyle(
+        fontFamily = PanelNowFontRegular,
         fontWeight = FontWeight.W400,
         fontSize = 14.sp,
         lineHeight = 14.sp,
         letterSpacing = 0.sp
     ),
-    body_m_12 = TextStyle(
-        fontFamily = PANELNOWFontMedium,
+    bodyM12 = TextStyle(
+        fontFamily = PanelNowFontMedium,
         fontWeight = FontWeight.W500,
         fontSize = 12.sp,
         lineHeight = 12.sp,
         letterSpacing = 0.sp
     ),
-    body_m_10 = TextStyle(
-        fontFamily = PANELNOWFontMedium,
+    bodyM10 = TextStyle(
+        fontFamily = PanelNowFontMedium,
         fontWeight = FontWeight.W500,
         fontSize = 10.sp,
         lineHeight = 10.sp,
@@ -95,4 +95,4 @@ val defaultPANELNOWTypography = PANELNOWTypography(
     )
 )
 
-val LocalPANELNOWTypographyProvider = staticCompositionLocalOf { defaultPANELNOWTypography }
+val LocalPanelNowTypographyProvider = staticCompositionLocalOf { defaultPanelNowTypography }

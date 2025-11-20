@@ -9,25 +9,25 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 @Composable
-fun ProvidePANELNOWColorsAndTypography(
-    colors: PANELNOWColors,
-    typography: PANELNOWTypography,
+fun ProvidePanelNowColorsAndTypography(
+    colors: PanelNowColors,
+    typography: PanelNowTypography,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
-        LocalPANELNOWColorsProvider provides colors,
-        LocalPANELNOWTypographyProvider provides typography,
+        LocalPanelNowColorsProvider provides colors,
+        LocalPanelNowTypographyProvider provides typography,
         content = content
     )
 }
 
 @Composable
-fun SOPT_COLLABORATION_PANELNOWTheme(
+fun PanelNowTheme(
     content: @Composable () -> Unit
 ) {
-    ProvidePANELNOWColorsAndTypography(
-        colors = defaultPANELNOWColors,
-        typography = defaultPANELNOWTypography
+    ProvidePanelNowColorsAndTypography(
+        colors = defaultPanelNowColors,
+        typography = defaultPanelNowTypography
     ) {
         val view = LocalView.current
         if (!view.isInEditMode) {
@@ -38,6 +38,7 @@ fun SOPT_COLLABORATION_PANELNOWTheme(
             }
         }
     }
+
     MaterialTheme(
         content = content
     )

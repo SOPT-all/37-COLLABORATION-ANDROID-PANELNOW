@@ -19,7 +19,7 @@ val Gray6 = Color(0xFF00152C)
 val White = Color(0xFFFFFFFF)
 
 @Immutable
-data class PANELNOWColors(
+data class PanelNowColors(
     val mainBlue: Color,
 
     val subBlue: Color,
@@ -35,7 +35,7 @@ data class PANELNOWColors(
     val white: Color
 )
 
-val defaultPANELNOWColors = PANELNOWColors(
+val defaultPanelNowColors = PanelNowColors(
     mainBlue = MainBlue,
 
     subBlue = SubBlue,
@@ -51,4 +51,4 @@ val defaultPANELNOWColors = PANELNOWColors(
     white = White
 )
 
-val LocalPANELNOWColorsProvider = staticCompositionLocalOf { defaultPANELNOWColors }
+val LocalPanelNowColorsProvider = staticCompositionLocalOf { defaultPanelNowColors }
