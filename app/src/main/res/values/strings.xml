@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SOPT_COLLABORATION_PANELNOW</string>
+
+    <!-- Point detail-->
+    <string name="point_detail_image">point_detail_image</string>
+    <string name="point_detail_description">포인트를 모바일 쿠폰으로 교환해보세요!\n더 편리하게 패널나우 포인트를 사용할 수 있어요.</string>
+    <string name="point_detail_coupon_date">교환 예정일</string>
+    <string name="point_detail_coupon_locate">받으실 곧</string>
+    <string name="point_detail_goods_detail">상품 상세</string>
+    <string name="point_detail_guide">이용 안내</string>
 </resources>
