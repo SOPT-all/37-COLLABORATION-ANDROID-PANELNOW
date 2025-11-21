@@ -4,15 +4,28 @@ import android.app.Activity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+
+
+object PanelNowTheme {
+    val colors: PanelNowColors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalPanelNowColorsProvider.current
+    val typography: PanelNowTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalPanelNowTypographyProvider.current
+}
 
 @Composable
 fun ProvidePanelNowColorsAndTypography(
     colors: PanelNowColors,
     typography: PanelNowTypography,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalPanelNowColorsProvider provides colors,
@@ -23,7 +36,7 @@ fun ProvidePanelNowColorsAndTypography(
 
 @Composable
 fun PanelNowTheme(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     ProvidePanelNowColorsAndTypography(
         colors = defaultPanelNowColors,
