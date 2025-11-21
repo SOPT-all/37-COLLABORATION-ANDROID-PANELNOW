@@ -4,26 +4,25 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.dropShadow
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.common.extension.noRippleClickable
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 
 @Composable
 fun PointPaySection(
@@ -31,26 +30,34 @@ fun PointPaySection(
     myPoint: String,
     modifier: Modifier = Modifier,
     canPayed: Boolean = false,
-    @DrawableRes IconRes: Int? = null,
+    @DrawableRes iconRes: Int? = null,
 ) {
-    val ButtonWidth = when (canPayed) {
+    val buttonWidth = when (canPayed) {
         true -> 1F
-        false -> 0F
+        false -> 0.1F
     }
 
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .background(
+                color = PanelNowTheme.colors.white
+            )
             .padding(horizontal = 16.dp, vertical = 16.dp),
-        horizontalArrangement = Arrangement.Center,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconRes?.let {
+        iconRes?.let {
             Icon(
                 imageVector = ImageVector.vectorResource(id = it),
                 contentDescription = null,
+                tint = Color.Unspecified
             )
         }
+
+        Text(
+            text = "나의 포인트"
+        )
 
         Text(
             text = myPoint
@@ -59,7 +66,7 @@ fun PointPaySection(
         PayButton(
             label = label,
             onPayClick = { /*TODO*/ },
-            modifier = Modifier.weight(ButtonWidth),
+            modifier = Modifier.weight(buttonWidth),
             isEnabled = canPayed
         )
 
@@ -73,11 +80,9 @@ private fun PayButton(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = false,
 ) {
-    val (backgroundColor, textColor) = remember(isEnabled) {
-        when (isEnabled) {
-            true -> Color.Blue to Color.White
-            false -> Color.Gray to Color.White
-        }
+    val backgroundColor = when (isEnabled) {
+        true -> PanelNowTheme.colors.mainBlue
+        false -> PanelNowTheme.colors.gray2
     }
 
     Box(
@@ -97,7 +102,8 @@ private fun PayButton(
     ) {
         Text(
             text = label,
-            color = textColor,
+            style = PanelNowTheme.typography.titleSb16,
+            color = PanelNowTheme.colors.white
         )
     }
 }
@@ -105,8 +111,24 @@ private fun PayButton(
 @Preview(showBackground = true)
 @Composable
 private fun ReviewPointPaySection() {
-    PointPaySection(
-        label = "1000원 결제하기",
-        myPoint = "1000",
-    )
+    PanelNowTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(240.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            PointPaySection(
+                label = "1000원 결제하기",
+                myPoint = "1000",
+            )
+
+            PointPaySection(
+                label = "1000원 결제하기",
+                myPoint = "1000",
+                canPayed = true,
+                iconRes = R.drawable.ic_point
+            )
+        }
+    }
 }
