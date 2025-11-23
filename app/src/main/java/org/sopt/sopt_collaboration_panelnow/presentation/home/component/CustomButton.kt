@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.MainBlue
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
@@ -35,7 +36,7 @@ fun CustomButton(onClick: () -> Unit, modifier: Modifier = Modifier, text: Strin
             containerColor = MainBlue,
             contentColor = White
         )
-    ) { Text(text = text, style = TextStyle(White)) }
+    ) { Text(text = text, style = TextStyle(White),fontSize = 15.sp) }
 }
 
 @Preview("ButtonPreview")
