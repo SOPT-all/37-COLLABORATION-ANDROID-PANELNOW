@@ -5,7 +5,7 @@ import org.sopt.sopt_collaboration_panelnow.R
 
 data class PopularSurveyModel(val title: String, val minutes :Int, val points : Int, @DrawableRes val iconRes : Int)
 
-val popularSurveyPreviewList = listOf(
+val popularSurveyList = listOf(
     PopularSurveyModel(
 
         title = "블랙프라이데이 쇼핑 경험",

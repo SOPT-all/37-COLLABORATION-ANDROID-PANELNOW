@@ -1,0 +1,150 @@
+package org.sopt.sopt_collaboration_panelnow.presentation.home.component
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.material3.Icon
+import androidx.compose.ui.text.font.FontWeight
+import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray1
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray2
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray3
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.presentation.home.model.PopularSurveyModel
+import org.sopt.sopt_collaboration_panelnow.presentation.home.model.popularSurveyList
+
+@Composable
+
+fun PopularSurveySection(
+    modifier: Modifier = Modifier,
+    surveys: List<PopularSurveyModel> = popularSurveyList,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "인기 설문",
+                fontFamily = PanelNowFontSemiBold,
+                fontWeight = FontWeight.W600,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Text(
+                text = "전체보기",
+                fontFamily = PanelNowFontMedium,
+                fontSize = 12.sp,
+                color = Gray2
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Icon(
+                painter = painterResource(id = R.drawable.ic_arrow_right),
+                contentDescription = "arrow_right",
+                tint = Color.Unspecified,
+                modifier = Modifier.size(
+                    18.dp
+                )
+            )
+        }
+
+        Spacer(modifier = Modifier.height(7.dp))
+
+        CardSection(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                surveys.forEach { survey ->
+                    PopularSurveyCard(
+                        survey = survey,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun PopularSurveyCard(
+    survey: PopularSurveyModel
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .background(
+                    color = Gray3,
+                    shape = RoundedCornerShape(18.dp)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                painter = painterResource(id = survey.iconRes),
+                contentDescription = survey.title,
+                tint = Color.Unspecified,
+                modifier = Modifier.size(50.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        Column(
+            modifier = Modifier.weight(1f)
+        ) {
+            Text(
+                text = survey.title,
+                fontFamily = PanelNowFontSemiBold,
+                fontSize = 16.sp
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "${survey.minutes}분",
+                fontFamily = PanelNowFontRegular,
+                fontSize = 13.sp,
+                color = Gray1
+            )
+        }
+
+        PointLabel(
+            points = "${survey.points}P"
+        )
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+private fun PopularSurveySectionPreview() {
+    Surface(color = Gray4) {
+        PopularSurveySection(
+            modifier = Modifier.padding(10.dp)
+        )
+    }
+}

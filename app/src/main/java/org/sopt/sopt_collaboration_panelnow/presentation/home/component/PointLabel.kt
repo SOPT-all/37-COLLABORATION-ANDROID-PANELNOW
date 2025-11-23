@@ -25,14 +25,26 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SubBlue
 fun PointLabel(points: String, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
-            .width(77.dp)
+            .width(48.dp)
 
-            .height(38.dp)
+            .height(25.dp)
             .background(SubBlue, CircleShape),
         contentAlignment = Alignment.Center
-    ) { Text(text = points, modifier.fillMaxWidth().padding(3.dp),color = MainBlue, fontWeight = FontWeight.Bold, fontSize = 18.sp, textAlign = TextAlign.Center) }
+    ) {
+        Text(
+            text = points,
+            modifier
+                .fillMaxWidth()
+                .padding(3.dp),
+            color = MainBlue,
+            fontWeight = FontWeight.W500,
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center
+        )
+    }
 
 }
+
 
 @Preview
 @Composable
