@@ -99,7 +99,7 @@ fun MiniTestSection(
 
 
 
-@Preview()
+@Preview(showBackground = true)
 @Composable
 private fun MiniTestSectionPreview() {
     Surface(color = Gray4) {

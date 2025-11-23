@@ -27,7 +27,6 @@ import org.sopt.sopt_collaboration_panelnow.presentation.home.model.PopularSurve
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.popularSurveyList
 
 @Composable
-
 fun PopularSurveySection(
     modifier: Modifier = Modifier,
     surveys: List<PopularSurveyModel> = popularSurveyList,
