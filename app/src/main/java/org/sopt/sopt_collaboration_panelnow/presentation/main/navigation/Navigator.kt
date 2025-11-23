@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -39,34 +40,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
-
 sealed class NavigationItem(
     val route: Route,
     val label: String = "",
     @DrawableRes val selectedIcons: Int,
     @DrawableRes val unselectedIcons: Int,
-
-    ) {
+) {
     data object HomeItem : NavigationItem(
         Route.Home,
         selectedIcons = R.drawable.ic_nav_home,
         unselectedIcons = R.drawable.ic_nav_home
     )
-
     data object SurveyItem : NavigationItem(
         Route.Survey,
         "설문조사",
         selectedIcons = R.drawable.ic_nav_survey_on,
         unselectedIcons = R.drawable.ic_nav_survey
     )
-
     data object EventItem : NavigationItem(
         Route.Event,
         "이벤트",
         selectedIcons = R.drawable.ic_nav_event_on,
         unselectedIcons = R.drawable.ic_nav_event
     )
-
     data object ExchangeItem :
         NavigationItem(
             Route.Exchange,
@@ -74,7 +70,6 @@ sealed class NavigationItem(
             selectedIcons = R.drawable.ic_nav_exchange_on,
             unselectedIcons = R.drawable.ic_nav_exchange
         )
-
     data object MyActionItem :
         NavigationItem(
             Route.MyAction,
@@ -83,7 +78,6 @@ sealed class NavigationItem(
             unselectedIcons = R.drawable.ic_nav_myaction
         )
 }
-
 @Composable
 private fun NavigatorBarItem(
     item: NavigationItem,
@@ -99,8 +93,7 @@ private fun NavigatorBarItem(
             painter = painterResource(id = icons),
             contentDescription = item.label,
             tint = Color.Unspecified,
-
-            )
+        )
         Spacer(Modifier.height(2.dp))
         Text(
             text = item.label,
@@ -112,7 +105,6 @@ private fun NavigatorBarItem(
         )
     }
 }
-
 @Composable
 fun CustomNavigatorBar(
     items: List<NavigationItem>,
@@ -120,22 +112,16 @@ fun CustomNavigatorBar(
     currentRoute: String?,
     onItemClick: (NavigationItem) -> Unit
 ) {
-
     val barColor = Color.White
-
-
     if (items.isEmpty() || centerIndex !in items.indices) return
-
     val centerItem = items[centerIndex]
     val leftItems = items.take(centerIndex)
     val rightItems = items.drop(centerIndex + 1)
-
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(88.dp)
     ) {
-
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -151,28 +137,23 @@ fun CustomNavigatorBar(
                     )
                     .drawWithContent {
                         drawContent()
-
-                        val rx = 38.dp.toPx()
-                        val ry = 56.dp.toPx()
-
+                        val rx = 36.dp.toPx()
+                        val ry = 55.dp.toPx()
                         val centerX = size.width / 2f
-                        val centerY = (-8).dp.toPx()
-
+                        val centerY = (5).dp.toPx()
                         val topLeft = Offset(
                             x = centerX - rx,
                             y = centerY - ry
                         )
-
                         drawOval(
                             color = Color.Transparent,
                             topLeft = topLeft,
                             size = Size(width = rx * 2, height = ry * 2),
                             blendMode = BlendMode.Clear
                         )
-
                     },
                 color = barColor,
-                shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+                shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp),
                 tonalElevation = 8.dp
             ) {
                 Row(
@@ -189,11 +170,7 @@ fun CustomNavigatorBar(
                             onClick = { onItemClick(item) }
                         )
                     }
-
-
                     Spacer(modifier = Modifier.width(30.dp))
-
-
                     rightItems.forEach { item ->
                         NavigatorBarItem(
                             item = item,
@@ -204,11 +181,9 @@ fun CustomNavigatorBar(
                 }
             }
         }
-
-
         FloatingActionButton(
             onClick = { onItemClick(centerItem) },
-            modifier = Modifier.align(Alignment.TopCenter),
+            modifier = Modifier.align(Alignment.TopCenter).offset(y=12.dp),
             shape = CircleShape,
             containerColor = Color(0xFF00A8FF),
             contentColor = MaterialTheme.colorScheme.onPrimary
@@ -221,12 +196,10 @@ fun CustomNavigatorBar(
         }
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun CustomNavigatorBarPreview() {
     var currentRoute by remember { mutableStateOf(Route.Home.path) }
-
     val items = listOf(
         NavigationItem.SurveyItem,
         NavigationItem.EventItem,
@@ -234,7 +207,6 @@ fun CustomNavigatorBarPreview() {
         NavigationItem.ExchangeItem,
         NavigationItem.MyActionItem
     )
-
     Scaffold(
         containerColor = Color(0xFFE0F7FA),
         bottomBar = {
