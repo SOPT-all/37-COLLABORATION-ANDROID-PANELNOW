@@ -42,6 +42,8 @@ fun PanelNowTopBar(
         } else {
             Text(
                 text = title.orEmpty(),
+                style = PanelNowTheme.typography.titleSb16,
+                color = PanelNowTheme.colors.gray6
             )
         }
 
