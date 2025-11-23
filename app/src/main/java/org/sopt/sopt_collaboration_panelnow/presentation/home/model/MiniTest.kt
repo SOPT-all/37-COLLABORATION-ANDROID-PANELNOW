@@ -7,7 +7,7 @@ data class MiniTestModel(
     val points: Int,
 )
 
-private val miniTestList = listOf(
+val miniTestList = listOf(
     MiniTestModel(
         title = "겨울에도 아이스 아메리카노를 드시나요?",
         seconds = 50,

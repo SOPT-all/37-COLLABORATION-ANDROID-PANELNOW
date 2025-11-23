@@ -18,7 +18,7 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 @Composable
 fun CardSection(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Surface(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier,
         shape = RoundedCornerShape(10.dp),
         color = White,
         tonalElevation = 10.dp,
