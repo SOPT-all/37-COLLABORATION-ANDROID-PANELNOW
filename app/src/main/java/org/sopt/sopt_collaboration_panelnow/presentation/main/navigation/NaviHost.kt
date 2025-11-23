@@ -21,7 +21,7 @@ fun NaviHost(
             .padding(innerPadding)
             .fillMaxSize()
     ) {
-        composable(Route.Home.path) { }
+        composable(Route.Home.path) { } // 이 안에 각자 스크린 넣으시면 됩니다
         composable(Route.Survey.path) { }
         composable(Route.Event.path) {  }
         composable(Route.Exchange.path) {  }
