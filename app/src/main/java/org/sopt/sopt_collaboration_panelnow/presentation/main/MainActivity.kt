@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SOPT_COLLABORATION_PANELNOWTheme
+import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.CustomNavigator
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SOPT_COLLABORATION_PANELNOWTheme {
-                MainScreen()
+                CustomNavigator()
             }
         }
     }
