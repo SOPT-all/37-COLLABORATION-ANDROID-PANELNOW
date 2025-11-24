@@ -25,9 +25,10 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 fun MyPointCard(
     currentPoint: Int,
     exchangedPoint: Int,
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(6.dp),
