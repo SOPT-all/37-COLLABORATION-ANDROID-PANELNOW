@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.common.extension.noRippleClickable
 
@@ -43,13 +44,13 @@ fun PanelNowTopBar(
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_topbar_alert),
-                contentDescription = "Alarm",
+                contentDescription = stringResource(id = R.string.top_bar_alarm),
                 tint = PanelNowTheme.colors.mainBlue,
                 modifier = Modifier.noRippleClickable(onClick = onAlarmClick)
             )
             Icon(
                 painter = painterResource(id = R.drawable.ic_topbar_user),
-                contentDescription = "Profile",
+                contentDescription = stringResource(R.string.top_bar_profile),
                 tint = PanelNowTheme.colors.mainBlue,
                 modifier = Modifier.noRippleClickable(onClick = onProfileClick)
             )
@@ -65,7 +66,7 @@ private fun PanelNowTopBarPreview_logo() {
             {
                 Icon(
                     painter = painterResource(id = R.drawable.logo),
-                    contentDescription = null,
+                    contentDescription = stringResource(R.string.top_bar_logo),
                     tint = Color.Unspecified,
                 )
             }

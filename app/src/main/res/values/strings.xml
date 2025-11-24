@@ -8,4 +8,10 @@
     <string name="point_detail_coupon_locate">받으실 곧</string>
     <string name="point_detail_goods_detail">상품 상세</string>
     <string name="point_detail_guide">이용 안내</string>
+
+    <!-- Top Bar -->
+    <string name="top_bar_alarm">알림</string>
+    <string name="top_bar_profile">프로필</string>
+    <string name="top_bar_logo">패널나우 로고</string>
+
 </resources>
