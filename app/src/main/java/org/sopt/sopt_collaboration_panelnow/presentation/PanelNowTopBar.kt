@@ -1,5 +1,6 @@
 package org.sopt.sopt_collaboration_panelnow.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,6 +30,7 @@ fun PanelNowTopBar(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
+            .background(PanelNowTheme.colors.gray4)
             .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -55,7 +57,7 @@ fun PanelNowTopBar(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Preview(showBackground = true)
 @Composable
 private fun PanelNowTopBarPreview_logo() {
     PanelNowTheme {
@@ -71,7 +73,7 @@ private fun PanelNowTopBarPreview_logo() {
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFF)
+@Preview(showBackground = true)
 @Composable
 private fun PanelNowTopBarPreview_text() {
     PanelNowTheme {
