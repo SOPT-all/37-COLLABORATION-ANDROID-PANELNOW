@@ -8,7 +8,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 
-
 @Composable
 fun CustomNavigator() {
     val navController = rememberNavController()

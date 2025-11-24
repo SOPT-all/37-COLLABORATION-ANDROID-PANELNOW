@@ -1,6 +1,7 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.main.navigation
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,12 +17,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,13 +29,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.CompositingStrategy
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -117,10 +112,9 @@ private fun NavigatorBarItem(
 fun CustomNavigatorBar(
     items: List<NavigationItem>,
     centerIndex: Int,
-    currentRoute:Route?,
+    currentRoute: Route?,
     onItemClick: (NavigationItem) -> Unit
 ) {
-    val barColor = Color.White
     if (items.isEmpty() || centerIndex !in items.indices) return
     val centerItem = items[centerIndex]
     val leftItems = items.take(centerIndex)
@@ -128,63 +122,45 @@ fun CustomNavigatorBar(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(88.dp)
+            .height(75.dp)
     ) {
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .height(70.dp)
+
         ) {
-            Surface(
+            Image(
+                painter = painterResource(R.drawable.ic_nav_background),
+                contentDescription = "Navigator Background",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(75.dp)
+                    .aspectRatio(402f / 162f),
+                contentScale = ContentScale.FillWidth
+            )
+
+            Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .graphicsLayer(
-                        alpha = 0.99f,
-                        compositingStrategy = CompositingStrategy.Offscreen
-                    )
-                    .drawWithContent {
-                        drawContent()
-                        val rx = 36.dp.toPx()
-                        val ry = 55.dp.toPx()
-                        val centerX = size.width / 2f
-                        val centerY = (5).dp.toPx()
-                        val topLeft = Offset(
-                            x = centerX - rx,
-                            y = centerY - ry
-                        )
-                        drawOval(
-                            color = Color.Transparent,
-                            topLeft = topLeft,
-                            size = Size(width = rx * 2, height = ry * 2),
-                            blendMode = BlendMode.Clear
-                        )
-                    },
-                color = barColor,
-                shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp),
+                    .padding(horizontal = 40.dp, vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 32.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    leftItems.forEach { item ->
-                        NavigatorBarItem(
-                            item = item,
-                            isSelected = currentRoute == item.route,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(30.dp))
-                    rightItems.forEach { item ->
-                        NavigatorBarItem(
-                            item = item,
-                            isSelected = currentRoute == item.route,
-                            onClick = { onItemClick(item) }
-                        )
-                    }
+                leftItems.forEach { item ->
+                    NavigatorBarItem(
+                        item = item,
+                        isSelected = currentRoute == item.route,
+                        onClick = { onItemClick(item) }
+                    )
+                }
+                Spacer(modifier = Modifier.width(30.dp))
+                rightItems.forEach { item ->
+                    NavigatorBarItem(
+                        item = item,
+                        isSelected = currentRoute == item.route,
+                        onClick = { onItemClick(item) }
+                    )
                 }
             }
         }
@@ -192,7 +168,7 @@ fun CustomNavigatorBar(
             onClick = { onItemClick(centerItem) },
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .offset(y = 12.dp),
+                .offset(y = -20.dp),
             shape = CircleShape,
             containerColor = Color(0xFF00A8FF),
             contentColor = MaterialTheme.colorScheme.onPrimary
