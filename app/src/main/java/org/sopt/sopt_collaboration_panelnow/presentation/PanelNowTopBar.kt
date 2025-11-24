@@ -23,9 +23,9 @@ import org.sopt.sopt_collaboration_panelnow.core.common.extension.noRippleClicka
 @Composable
 fun PanelNowTopBar(
     content: @Composable () -> Unit,
+    modifier : Modifier = Modifier,
     onAlarmClick: () -> Unit = {},
     onProfileClick: () -> Unit = {},
-    modifier : Modifier = Modifier
 ) {
     Row(
         modifier = modifier
@@ -63,7 +63,7 @@ fun PanelNowTopBar(
 private fun PanelNowTopBarPreview_logo() {
     PanelNowTheme {
         PanelNowTopBar(
-            {
+            content = {
                 Icon(
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = stringResource(R.string.top_bar_logo),
