@@ -20,8 +20,7 @@ import org.sopt.sopt_collaboration_panelnow.R
 
 @Composable
 fun PanelNowTopBar(
-    title: String? = null,
-    showLogo: Boolean = false,
+    content: @Composable () -> Unit,
     onAlarmClick: () -> Unit = {},
     onProfileClick: () -> Unit = {},
 ) {
@@ -33,19 +32,7 @@ fun PanelNowTopBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (showLogo) {
-            Image(
-                painter = painterResource(id = R.drawable.logo),
-                contentDescription = "PanelNow Logo",
-                modifier = Modifier.height(32.dp)
-            )
-        } else {
-            Text(
-                text = title.orEmpty(),
-                style = PanelNowTheme.typography.titleSb16,
-                color = PanelNowTheme.colors.gray6
-            )
-        }
+        content()
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -74,7 +61,13 @@ fun PanelNowTopBar(
 private fun PanelNowTopBarPreview_logo() {
     PanelNowTheme {
         PanelNowTopBar(
-            showLogo = true
+            {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = null,
+                    modifier = Modifier.height(32.dp)
+                )
+            }
         )
     }
 }
@@ -84,8 +77,13 @@ private fun PanelNowTopBarPreview_logo() {
 private fun PanelNowTopBarPreview_text() {
     PanelNowTheme {
         PanelNowTopBar(
-            title = "포인트 교환",
-            showLogo = false
+            content = {
+                Text(
+                    text = "포인트 교환",
+                    style = PanelNowTheme.typography.titleSb16,
+                    color = PanelNowTheme.colors.gray6
+                )
+            }
         )
     }
 }
