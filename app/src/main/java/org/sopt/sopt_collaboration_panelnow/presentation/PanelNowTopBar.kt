@@ -23,9 +23,10 @@ fun PanelNowTopBar(
     content: @Composable () -> Unit,
     onAlarmClick: () -> Unit = {},
     onProfileClick: () -> Unit = {},
+    modifier : Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
             .padding(horizontal = 16.dp),
