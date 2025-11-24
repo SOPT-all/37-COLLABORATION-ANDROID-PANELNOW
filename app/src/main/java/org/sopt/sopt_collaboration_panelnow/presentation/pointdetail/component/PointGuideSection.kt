@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 
 @Composable
 fun PointGuideSection(
@@ -30,13 +31,17 @@ fun PointGuideSection(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(
-            text = stringResource(id= R.string.point_detail_guide),
+            text = stringResource(id = R.string.point_detail_guide),
+            style = PanelNowTheme.typography.titleSb16,
+            color = PanelNowTheme.colors.gray6,
             modifier = Modifier
                 .align(Alignment.Start),
         )
 
         Text(
-            text = guideText
+            text = guideText,
+            style = PanelNowTheme.typography.bodyR14,
+            color = PanelNowTheme.colors.gray6,
         )
     }
 }
@@ -44,7 +49,9 @@ fun PointGuideSection(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewPointGuideSection() {
-    PointGuideSection(
-        guideText = "포인트 상세 설명 예시 텍스트"
-    )
+    PanelNowTheme {
+        PointGuideSection(
+            guideText = "포인트 상세 설명 예시 텍스트"
+        )
+    }
 }
