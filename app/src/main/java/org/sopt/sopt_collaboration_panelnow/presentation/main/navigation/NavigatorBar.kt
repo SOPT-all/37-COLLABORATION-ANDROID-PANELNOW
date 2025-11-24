@@ -40,44 +40,51 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
+
 sealed class NavigationItem(
     val route: Route,
-    val label: String = "",
+    val label: String,
     @DrawableRes val selectedIcons: Int,
     @DrawableRes val unselectedIcons: Int,
 ) {
     data object HomeItem : NavigationItem(
-        Route.Home,
+        Home,
+        label = "",
         selectedIcons = R.drawable.ic_nav_home,
         unselectedIcons = R.drawable.ic_nav_home
     )
+
     data object SurveyItem : NavigationItem(
-        Route.Survey,
+        Survey,
         "설문조사",
         selectedIcons = R.drawable.ic_nav_survey_on,
         unselectedIcons = R.drawable.ic_nav_survey
     )
+
     data object EventItem : NavigationItem(
-        Route.Event,
+        Event,
         "이벤트",
         selectedIcons = R.drawable.ic_nav_event_on,
         unselectedIcons = R.drawable.ic_nav_event
     )
+
     data object ExchangeItem :
         NavigationItem(
-            Route.Exchange,
+            Exchange,
             "포인트 교환",
             selectedIcons = R.drawable.ic_nav_exchange_on,
             unselectedIcons = R.drawable.ic_nav_exchange
         )
+
     data object MyActionItem :
         NavigationItem(
-            Route.MyAction,
+            MyAction,
             "내 활동",
             selectedIcons = R.drawable.ic_nav_myaction_on,
             unselectedIcons = R.drawable.ic_nav_myaction
         )
 }
+
 @Composable
 private fun NavigatorBarItem(
     item: NavigationItem,
@@ -105,11 +112,12 @@ private fun NavigatorBarItem(
         )
     }
 }
+
 @Composable
 fun CustomNavigatorBar(
     items: List<NavigationItem>,
     centerIndex: Int,
-    currentRoute: String?,
+    currentRoute:Route?,
     onItemClick: (NavigationItem) -> Unit
 ) {
     val barColor = Color.White
@@ -154,7 +162,6 @@ fun CustomNavigatorBar(
                     },
                 color = barColor,
                 shape = RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp),
-                tonalElevation = 8.dp
             ) {
                 Row(
                     modifier = Modifier
@@ -166,7 +173,7 @@ fun CustomNavigatorBar(
                     leftItems.forEach { item ->
                         NavigatorBarItem(
                             item = item,
-                            isSelected = currentRoute == item.route.path,
+                            isSelected = currentRoute == item.route,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -174,7 +181,7 @@ fun CustomNavigatorBar(
                     rightItems.forEach { item ->
                         NavigatorBarItem(
                             item = item,
-                            isSelected = currentRoute == item.route.path,
+                            isSelected = currentRoute == item.route,
                             onClick = { onItemClick(item) }
                         )
                     }
@@ -183,7 +190,9 @@ fun CustomNavigatorBar(
         }
         FloatingActionButton(
             onClick = { onItemClick(centerItem) },
-            modifier = Modifier.align(Alignment.TopCenter).offset(y=12.dp),
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .offset(y = 12.dp),
             shape = CircleShape,
             containerColor = Color(0xFF00A8FF),
             contentColor = MaterialTheme.colorScheme.onPrimary
@@ -196,10 +205,11 @@ fun CustomNavigatorBar(
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun CustomNavigatorBarPreview() {
-    var currentRoute by remember { mutableStateOf(Route.Home.path) }
+    var currentRoute by remember { mutableStateOf<Route?>(Home) }
     val items = listOf(
         NavigationItem.SurveyItem,
         NavigationItem.EventItem,
@@ -212,10 +222,10 @@ fun CustomNavigatorBarPreview() {
         bottomBar = {
             CustomNavigatorBar(
                 items = items,
-                centerIndex = 2, // HomeItem
+                centerIndex = 2,
                 currentRoute = currentRoute,
                 onItemClick = { item ->
-                    currentRoute = item.route.path
+                    currentRoute = item.route
                 }
             )
         }

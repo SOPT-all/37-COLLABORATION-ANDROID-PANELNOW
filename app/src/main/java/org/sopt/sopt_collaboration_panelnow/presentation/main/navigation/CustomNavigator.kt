@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 
 
 @Composable
@@ -13,7 +14,7 @@ fun CustomNavigator() {
     val navController = rememberNavController()
 
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = backStackEntry?.destination?.route
+    val currentRoute = backStackEntry?.toRoute<Route>()
 
     val items = listOf(
         NavigationItem.SurveyItem,
@@ -31,10 +32,8 @@ fun CustomNavigator() {
                 centerIndex = items.indexOf(NavigationItem.HomeItem),
                 currentRoute = currentRoute,
                 onItemClick = { item ->
-                    if (currentRoute == item.route.path) return@CustomNavigatorBar
-
-                    navController.navigate(item.route.path) {
-                        popUpTo(Route.Home.path) {
+                    navController.navigate(item.route) {
+                        popUpTo(Home) {
                             saveState = true
                         }
                         launchSingleTop = true

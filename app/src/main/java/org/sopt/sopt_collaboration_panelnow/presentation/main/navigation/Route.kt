@@ -1,14 +1,20 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.main.navigation
 
-sealed class Route(val path: String) {
+import kotlinx.serialization.Serializable
 
-    object Survey : Route("survey")
+sealed interface Route
 
-    object Event : Route("event")
+@Serializable
+data object Home : Route
 
-    object Home : Route("home")
+@Serializable
+data object Survey : Route
 
-    object Exchange : Route("exchange")
+@Serializable
+data object Event : Route
 
-    object MyAction : Route("myAction")
-}
+@Serializable
+data object Exchange : Route
+
+@Serializable
+data object  MyAction : Route
