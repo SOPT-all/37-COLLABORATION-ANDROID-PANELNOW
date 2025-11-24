@@ -10,12 +10,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import org.sopt.sopt_collaboration_panelnow.R
 
 @Composable
@@ -38,18 +38,18 @@ fun PanelNowTopBar(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_topbar_alert),
                 contentDescription = "Alarm",
+                tint = PanelNowTheme.colors.mainBlue,
                 modifier = Modifier
-                    .size(24.dp)
                     .clickable{ onAlarmClick() }
             )
-            Image(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_topbar_user),
                 contentDescription = "Profile",
+                tint = PanelNowTheme.colors.mainBlue,
                 modifier = Modifier
-                    .size(24.dp)
                     .clickable{ onProfileClick() }
             )
         }
@@ -62,10 +62,10 @@ private fun PanelNowTopBarPreview_logo() {
     PanelNowTheme {
         PanelNowTopBar(
             {
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.logo),
                     contentDescription = null,
-                    modifier = Modifier.height(32.dp)
+                    tint = Color.Unspecified,
                 )
             }
         )
