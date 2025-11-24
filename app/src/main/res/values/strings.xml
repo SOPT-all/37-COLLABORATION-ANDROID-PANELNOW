@@ -8,4 +8,10 @@
     <string name="point_detail_coupon_locate">받으실 곧</string>
     <string name="point_detail_goods_detail">상품 상세</string>
     <string name="point_detail_guide">이용 안내</string>
+
+    <!-- Point Exchange -->
+    <string name="point_exchange_my_point">나의 포인트</string>
+    <string name="point_exchange_exchanged_point">현재까지 교환한 포인트</string>
+    <string name="point_exchange_arrow">포인트 더보기</string>
+
 </resources>

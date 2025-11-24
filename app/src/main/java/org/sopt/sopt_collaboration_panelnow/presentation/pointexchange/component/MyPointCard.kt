@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
@@ -43,7 +44,7 @@ fun MyPointCard(
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_point),
-                    contentDescription = "Point Icon",
+                    contentDescription = null,
                     tint = Color.Unspecified,
                     modifier = Modifier.size(24.dp),
                 )
@@ -51,7 +52,7 @@ fun MyPointCard(
                 Spacer(modifier = Modifier.width(10.dp))
 
                 Text(
-                    text = "나의 포인트",
+                    text = stringResource(id = R.string.point_exchange_my_point),
                     style = PanelNowTheme.typography.titleSb16,
                     color = PanelNowTheme.colors.gray6,
                 )
@@ -72,7 +73,7 @@ fun MyPointCard(
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_right),
-                    contentDescription = "화살표",
+                    contentDescription = stringResource(id = R.string.point_exchange_arrow),
                     tint = PanelNowTheme.colors.gray2,
                     modifier = Modifier.size(24.dp),
                 )
@@ -82,13 +83,13 @@ fun MyPointCard(
 
             Row {
                 Text(
-                    text = "현재까지 교환한 포인트 ",
+                    text = stringResource(id = R.string.point_exchange_exchanged_point),
                     style = PanelNowTheme.typography.titleM14,
                     color = PanelNowTheme.colors.gray1,
                 )
 
                 Text(
-                    text = "%,dP".format(exchangedPoint),
+                    text = " %,dP".format(exchangedPoint),
                     style = PanelNowTheme.typography.titleM14,
                     color = PanelNowTheme.colors.mainBlue,
                 )
@@ -97,7 +98,7 @@ fun MyPointCard(
 
         Image(
             painter = painterResource(id = R.drawable.img_point_character),
-            contentDescription = "Point Character",
+            contentDescription = null,
             modifier = Modifier
                 .width(138.dp)
                 .height(64.dp)
