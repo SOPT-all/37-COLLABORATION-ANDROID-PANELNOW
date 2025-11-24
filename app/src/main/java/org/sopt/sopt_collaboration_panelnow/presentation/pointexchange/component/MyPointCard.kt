@@ -57,7 +57,7 @@ fun MyPointCard(
                 )
             }
 
-            Spacer(Modifier.width(10.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -68,7 +68,7 @@ fun MyPointCard(
                     color = PanelNowTheme.colors.gray6,
                 )
 
-                Spacer(Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(10.dp))
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_right),
@@ -78,7 +78,7 @@ fun MyPointCard(
                 )
             }
 
-            Spacer(Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             Row {
                 Text(
