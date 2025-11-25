@@ -8,6 +8,9 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.devtools.ksp)
 }
+val properties = Properties().apply {
+    load(project.rootProject.file("local.properties").inputStream())
+}
 
 android {
     namespace = "org.sopt.sopt_collaboration_panelnow"
