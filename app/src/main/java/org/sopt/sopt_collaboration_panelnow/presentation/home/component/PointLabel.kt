@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.MainBlue
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SubBlue
 
 
@@ -26,7 +27,6 @@ fun PointLabel(points: String, modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .width(48.dp)
-
             .height(25.dp)
             .background(SubBlue, CircleShape),
         contentAlignment = Alignment.Center
@@ -37,8 +37,9 @@ fun PointLabel(points: String, modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(3.dp),
             color = MainBlue,
-            fontWeight = FontWeight.W500,
             fontSize = 12.sp,
+            fontFamily = PanelNowFontMedium,
+            fontWeight = FontWeight.W500,
             textAlign = TextAlign.Center
         )
     }

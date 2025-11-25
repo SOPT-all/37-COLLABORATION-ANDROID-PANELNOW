@@ -14,11 +14,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
@@ -33,24 +36,26 @@ fun MiniTestCard(
 ) {
     CardSection(
         modifier = modifier
-            .width(260.dp)
-            .height(180.dp)
+            .width(250.dp)
+            .height(168.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = "${seconds}초",
-                fontFamily = PanelNowFontRegular,
-                fontSize = 14.sp,
+                fontFamily = PanelNowFontMedium,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.W500
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
                 text = title,
-                fontFamily = PanelNowFontBold,
-                fontSize = 18.sp,
+                fontFamily = PanelNowFontSemiBold,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.W600
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -78,6 +83,7 @@ fun MiniTestSection(
             text = "미니 테스트",
             fontFamily = PanelNowFontSemiBold,
             fontSize = 18.sp,
+            fontWeight = FontWeight.W600,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 

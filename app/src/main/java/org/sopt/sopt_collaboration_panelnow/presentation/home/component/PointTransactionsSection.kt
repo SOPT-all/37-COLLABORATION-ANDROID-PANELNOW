@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,13 +43,16 @@ fun PointTransactionCard(
                         Icon(
                             painter = painterResource(id = R.drawable.ic_point),
                             contentDescription = "point",
-                            tint = Color.Unspecified
+                            tint = Color.Unspecified,
+                            modifier = Modifier.size(24.dp)
+
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Text(
                             text = "나의 포인트",
                             fontFamily = PanelNowFontSemiBold,
-                            fontSize = 18.sp
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.W600
                         )
                     }
 
@@ -60,7 +64,8 @@ fun PointTransactionCard(
                         Text(
                             text = pointsText,
                             fontFamily = PanelNowFontBold,
-                            fontSize = 25.sp
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.W700
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         Icon(
@@ -108,7 +113,8 @@ fun PointTransactionsSection(
             text = "포인트 내역",
             fontFamily = PanelNowFontSemiBold,
             modifier = Modifier.padding(horizontal = 16.dp),
-            fontSize = 18.sp
+            fontSize = 16.sp,
+            fontWeight = FontWeight.W600
         )
 
         Spacer(modifier = Modifier.height(2.dp))

@@ -24,7 +24,7 @@ fun HomeScreen(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-            .padding(top = 16.dp, bottom = 16.dp)
+//            .padding(top = 16.dp, bottom = 16.dp)
     ) {
 
         PointTransactionsSection(
@@ -34,20 +34,22 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         PopularSurveySection(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(start = 10.dp)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         MiniTestSection(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(start = 10.dp)
+            ,
             miniTests = miniTests
         )
 
     }
 }
 
-@Preview
+
+@Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
     val miniTests = listOf(

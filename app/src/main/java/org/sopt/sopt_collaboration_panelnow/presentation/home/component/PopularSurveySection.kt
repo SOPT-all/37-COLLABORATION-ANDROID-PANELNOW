@@ -43,17 +43,19 @@ fun PopularSurveySection(
         ) {
             Text(
                 text = "인기 설문",
+                fontSize = 16.sp,
                 fontFamily = PanelNowFontSemiBold,
-                fontWeight = FontWeight.W600,
-                fontSize = 18.sp
+                fontWeight = FontWeight.W600
+
             )
 
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
                 text = "전체보기",
-                fontFamily = PanelNowFontMedium,
                 fontSize = 12.sp,
+                fontFamily = PanelNowFontMedium,
+                fontWeight = FontWeight.W500,
                 color = Gray2
             )
             Spacer(modifier = Modifier.width(4.dp))
@@ -62,7 +64,7 @@ fun PopularSurveySection(
                 contentDescription = "arrow_right",
                 tint = Color.Unspecified,
                 modifier = Modifier.size(
-                    18.dp
+                    height = 12.dp, width = 6.dp
                 )
             )
         }
