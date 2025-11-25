@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
@@ -143,8 +144,10 @@ fun CustomNavigatorBar(
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 40.dp, vertical = 4.dp),
+                    .padding(horizontal = 24.dp, vertical = 6.dp)
+                    .offset(y = (-35).dp),
                 verticalAlignment = Alignment.CenterVertically,
+
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 leftItems.forEach { item ->
@@ -168,7 +171,8 @@ fun CustomNavigatorBar(
             onClick = { onItemClick(centerItem) },
             modifier = Modifier
                 .align(Alignment.TopCenter)
-                .offset(y = -20.dp),
+                .size(height = 65.dp, width = 63.dp)
+                .offset(y = (-40).dp),
             shape = CircleShape,
             containerColor = Color(0xFF00A8FF),
             contentColor = MaterialTheme.colorScheme.onPrimary
