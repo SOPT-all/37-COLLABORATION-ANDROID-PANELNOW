@@ -30,6 +30,7 @@ import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 import org.sopt.sopt_collaboration_panelnow.domain.entity.Product
 import androidx.compose.runtime.getValue
+import androidx.compose.material3.Text
 
 @Composable
 fun PointExchangeRoute(
@@ -56,7 +57,7 @@ fun PointExchangeScreen(
     ) {
         PanelNowTopBar(
             content = {
-                androidx.compose.material3.Text(
+                Text(
                     text = "포인트 교환",
                     style = PanelNowTheme.typography.titleSb16,
                     color = PanelNowTheme.colors.gray6
