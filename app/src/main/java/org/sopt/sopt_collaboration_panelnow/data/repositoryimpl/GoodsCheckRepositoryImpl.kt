@@ -14,4 +14,11 @@ class GoodsCheckRepositoryImpl @Inject constructor(
             goodsCheckDataSource.getGoodsCheck(productId).data.toGoodsCheck()
         }
     }
+
+    override suspend fun postPurchase(userId: Long, productId: Int): Result<String> {
+        return runCatching {
+            val response = goodsCheckDataSource.postPurchase(userId, productId)
+            response.message
+        }
+    }
 }

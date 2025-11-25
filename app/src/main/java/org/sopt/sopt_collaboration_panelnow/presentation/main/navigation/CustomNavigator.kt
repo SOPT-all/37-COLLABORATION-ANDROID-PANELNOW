@@ -32,7 +32,7 @@ fun CustomNavigator() {
                 currentRoute = currentRoute,
                 onItemClick = { item ->
                     navController.navigate(item.route) {
-                        popUpTo(Home) {
+                        popUpTo(Home::class) {
                             saveState = true
                         }
                         launchSingleTop = true
