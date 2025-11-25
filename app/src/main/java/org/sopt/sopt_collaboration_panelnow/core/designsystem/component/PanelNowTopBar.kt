@@ -1,4 +1,4 @@
-package org.sopt.sopt_collaboration_panelnow.presentation
+package org.sopt.sopt_collaboration_panelnow.core.designsystem.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row

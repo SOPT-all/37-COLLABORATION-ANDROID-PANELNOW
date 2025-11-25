@@ -24,6 +24,7 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 
 data class Product(
     val imageUrl: String,
@@ -57,6 +58,16 @@ fun PointExchangeScreen(
             .fillMaxSize()
             .background(color = PanelNowTheme.colors.gray4)
     ) {
+        PanelNowTopBar(
+            content = {
+                androidx.compose.material3.Text(
+                    text = "포인트 교환",
+                    style = PanelNowTheme.typography.titleSb16,
+                    color = PanelNowTheme.colors.gray6
+                )
+            }
+        )
+
         MyPointCard(
             currentPoint = 4500,
             exchangedPoint = 4000
