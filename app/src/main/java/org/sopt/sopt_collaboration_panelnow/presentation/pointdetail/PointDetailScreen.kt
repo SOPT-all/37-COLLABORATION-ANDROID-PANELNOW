@@ -26,12 +26,13 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.viewmodel.P
 
 @Composable
 fun PointDetailRoute(
+    productId: Int,
     viewModel: PointDetailViewModel = hiltViewModel(),
 ) {
     val goodsCheckState by viewModel.goodsCheckState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.getGoodsCheck(6)
+        viewModel.getGoodsCheck(productId)
     }
 
     PointDetailScreen(
