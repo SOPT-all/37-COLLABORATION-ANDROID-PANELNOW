@@ -10,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sopt_collaboration_panelnow.BuildConfig
+import org.sopt.sopt_collaboration_panelnow.data.remote.service.GoodsCheckService
 import retrofit2.Converter
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
@@ -63,4 +64,9 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(jsonConverterFactory)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideGoodsCheckService(retrofit: Retrofit): GoodsCheckService =
+        retrofit.create(GoodsCheckService::class.java)
 }

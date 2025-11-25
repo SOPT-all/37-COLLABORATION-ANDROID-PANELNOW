@@ -6,27 +6,42 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
+import org.sopt.sopt_collaboration_panelnow.domain.entity.GoodsCheck
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointCouponSection
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointGoodsSection
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointGuideSection
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointImageSection
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointPaySection
+import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.viewmodel.PointDetailViewModel
 
 
 @Composable
 fun PointDetailRoute(
+    viewModel: PointDetailViewModel = hiltViewModel(),
 ) {
-    PointDetailScreen()
+    val goodsCheckState by viewModel.goodsCheckState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.getGoodsCheck(6)
+    }
+
+    PointDetailScreen(
+        goodsCheckState = goodsCheckState
+    )
 }
 
 @Composable
 fun PointDetailScreen(
+    goodsCheckState: GoodsCheck,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -43,26 +58,26 @@ fun PointDetailScreen(
         ) {
             item {
                 PointImageSection(
-                    pointImageUrl = "",
+                    pointImageUrl = goodsCheckState.imageUrl,
                 )
             }
             item {
                 PointCouponSection(
-                    couponName = "Free Coffee Coupon",
-                    couponPoint = "1000",
-                    phoneNumber = "010-1234-5678",
-                    exchangeDate = "2023-12-31",
+                    couponName = goodsCheckState.name,
+                    couponPoint = goodsCheckState.price.toString(),
+                    phoneNumber = goodsCheckState.phoneNumber,
+                    exchangeDate = goodsCheckState.exchangeDay,
                     modifier = modifier
                 )
             }
             item {
                 PointGoodsSection(
-                    detailText = "This is a detailed description of the point goods.",
+                    detailText = goodsCheckState.info,
                 )
             }
             item {
                 PointGuideSection(
-                    guideText = "This is a guide section for the point detail.",
+                    guideText = goodsCheckState.guide,
                 )
             }
         }
@@ -80,5 +95,7 @@ fun PointDetailScreen(
 @Preview(showBackground = true)
 @Composable
 private fun PreviewPointdetailScreen() {
-    PointDetailScreen()
+    PanelNowTheme {
+        PointDetailScreen(goodsCheckState = GoodsCheck.Empty)
+    }
 }
