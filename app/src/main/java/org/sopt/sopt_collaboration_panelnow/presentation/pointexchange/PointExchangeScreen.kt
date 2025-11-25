@@ -23,28 +23,26 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component.ProductCard
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.sopt_collaboration_panelnow.R
-
-data class Product(
-    val imageUrl: String,
-    val title: String,
-    val businessDays: Int,
-    val points: Int
-)
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
+import org.sopt.sopt_collaboration_panelnow.domain.entity.Product
+import androidx.compose.runtime.getValue
+import androidx.compose.material3.Text
 
 @Composable
 fun PointExchangeRoute(
+    viewModel: PointExchangeViewModel = hiltViewModel(),
 ) {
-    val dummyProducts = listOf(
-        Product("", "현금 교환", 10, 2000),
-        Product("", "굿네이버스 기부", 30, 100),
-        Product("", "네이버페이 포인트쿠폰 3000원권", 3, 3200),
-        Product("", "배스킨 라빈스 파인트 아이스크림", 3, 9800),
-        Product("", "교촌 허니오리지날+콜라 1.25L", 3, 22000),
-        Product("", "네이버페이 포인트쿠폰 5000원권", 3, 5000),
-    )
+    val products by viewModel.products.collectAsState()
 
-    PointExchangeScreen(products = dummyProducts)
+    LaunchedEffect(Unit) {
+        viewModel.getProducts("default")
+    }
+
+    PointExchangeScreen(products = products)
 }
 
 @Composable
@@ -57,6 +55,16 @@ fun PointExchangeScreen(
             .fillMaxSize()
             .background(color = PanelNowTheme.colors.gray4)
     ) {
+        PanelNowTopBar(
+            content = {
+                Text(
+                    text = "포인트 교환",
+                    style = PanelNowTheme.typography.titleSb16,
+                    color = PanelNowTheme.colors.gray6
+                )
+            }
+        )
+
         MyPointCard(
             currentPoint = 4500,
             exchangedPoint = 4000
@@ -70,7 +78,7 @@ fun PointExchangeScreen(
                     shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)
                 )
                 .padding(horizontal = 16.dp)
-                .padding(top = 16.dp, bottom = 32.dp)
+                .padding(top = 16.dp)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_dropdown_popularity),
@@ -90,9 +98,9 @@ fun PointExchangeScreen(
                     items(products) { product ->
                         ProductCard(
                             imageUrl = product.imageUrl,
-                            title = product.title,
-                            businessDays = product.businessDays,
-                            points = product.points,
+                            title = product.name,
+                            businessDays = product.day,
+                            points = product.price,
                             modifier = Modifier
                                 .wrapContentWidth()
                         )
@@ -107,12 +115,12 @@ fun PointExchangeScreen(
 @Composable
 private fun PointExchangeScreenPreview() {
     val dummyProducts = listOf(
-        Product("", "현금 교환", 10, 2000),
-        Product("", "굿네이버스 기부", 30, 100),
-        Product("", "네이버페이 포인트쿠폰 3000원권", 3, 3200),
-        Product("", "배스킨 라빈스 파인트 아이스크림", 3, 9800),
-        Product("", "교촌 허니오리지날+콜라 1.25L", 3, 22000),
-        Product("", "네이버페이 포인트쿠폰 5000원권", 3, 5000),
+        Product(-1, "", "현금 교환", 2000, "10"),
+        Product(-1, "", "굿네이버스 기부", 100, "30"),
+        Product(-1, "", "네이버페이 포인트쿠폰 3000원권", 3200, "3"),
+        Product(-1, "", "배스킨 라빈스 파인트 아이스크림", 9800, "3"),
+        Product(-1, "", "교촌 허니오리지날+콜라 1.25L", 22000, "3"),
+        Product(-1, "", "네이버페이 포인트쿠폰 5000원권", 5000, "3"),
     )
 
     PanelNowTheme {

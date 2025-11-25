@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.PointDetailRoute
+import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.PointExchangeRoute
 
 
 @Composable
@@ -26,7 +27,9 @@ fun NaviHost(
         composable<Home> { } // 이 안에 각자 스크린 넣으시면 됩니다
         composable<Survey> { }
         composable<Event> { }
-        composable<Exchange> { }
+        composable<Exchange> {
+            PointExchangeRoute()
+        }
         composable<MyAction> {
             PointDetailRoute()
         }

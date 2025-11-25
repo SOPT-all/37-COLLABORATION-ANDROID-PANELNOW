@@ -13,7 +13,7 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 fun ProductCard(
     imageUrl: String,
     title: String,
-    businessDays: Int,
+    businessDays: String,
     points: Int,
     modifier: Modifier = Modifier
 ) {
@@ -41,7 +41,7 @@ fun ProductCard(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = "$businessDays 영업일 소요",
+            text = businessDays,
             style = PanelNowTheme.typography.titleM12,
             color = PanelNowTheme.colors.gray1,
         )
@@ -63,7 +63,7 @@ private fun MyPointCardPreview() {
         ProductCard(
             imageUrl = "",
             title = "네이버페이 포인트쿠폰 3000원권",
-            businessDays = 3,
+            businessDays = "3",
             points = 3200,
         )
     }
