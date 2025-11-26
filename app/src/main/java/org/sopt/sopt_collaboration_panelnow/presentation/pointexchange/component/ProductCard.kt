@@ -1,9 +1,14 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -24,13 +29,28 @@ fun ProductCard(
             .width(160.dp)
             .noRippleClickable(onClick)
     ) {
-        AsyncImage(
-            model = imageUrl,
-            contentDescription = title,
+        Box(
             modifier = Modifier
                 .width(160.dp)
-                .height(116.dp),
-        )
+                .height(116.dp)
+                .border(
+                    width = 0.5.dp,
+                    color = PanelNowTheme.colors.gray1,
+                    shape = RoundedCornerShape(12.dp),
+                )
+                .background(
+                    color = PanelNowTheme.colors.gray4,
+                    shape = RoundedCornerShape(12.dp),
+                )
+                .clip(RoundedCornerShape(12.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            AsyncImage(
+                model = imageUrl,
+                contentDescription = title,
+                modifier = Modifier.fillMaxSize(0.7f)
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -66,7 +86,7 @@ private fun MyPointCardPreview() {
         ProductCard(
             imageUrl = "",
             title = "네이버페이 포인트쿠폰 3000원권",
-            businessDays = "3",
+            businessDays = "3 영업일 소요",
             points = 3200,
             onClick = {},
         )
