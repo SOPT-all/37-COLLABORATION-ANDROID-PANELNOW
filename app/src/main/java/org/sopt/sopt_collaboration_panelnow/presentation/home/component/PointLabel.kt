@@ -20,8 +20,6 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.MainBlue
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SubBlue
 
-
-
 @Composable
 fun PointLabel(points: String, modifier: Modifier = Modifier) {
     Box(

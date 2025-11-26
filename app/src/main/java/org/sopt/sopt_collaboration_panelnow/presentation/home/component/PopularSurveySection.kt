@@ -23,6 +23,7 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.PopularSurveyModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.popularSurveyList
 
@@ -34,19 +35,19 @@ fun PopularSurveySection(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
+
             Text(
                 text = "인기 설문",
                 fontSize = 16.sp,
                 fontFamily = PanelNowFontSemiBold,
                 fontWeight = FontWeight.W600
-
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -71,17 +72,20 @@ fun PopularSurveySection(
 
         Spacer(modifier = Modifier.height(7.dp))
 
-        CardSection(
-            modifier = Modifier
-                .padding(horizontal = 16.dp, vertical = 8.dp)
+        Surface(
+            modifier = Modifier.fillMaxWidth(), color = White,
+            shape = RoundedCornerShape(10.dp),
+            tonalElevation = 8.dp
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 surveys.forEach { survey ->
                     PopularSurveyCard(
-                        survey = survey,
+                        survey = survey
                     )
                 }
             }

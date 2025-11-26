@@ -14,9 +14,9 @@ import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestMode
 
 @Composable
 fun HomeScreen(
+    miniTests: List<MiniTestModel>,
     modifier: Modifier = Modifier,
     pointsText: String = "4,500P",
-    miniTests: List<MiniTestModel>,
 ) {
     val scrollState = rememberScrollState()
 
@@ -24,30 +24,28 @@ fun HomeScreen(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
-//            .padding(top = 16.dp, bottom = 16.dp)
     ) {
 
         PointTransactionsSection(
             modifier = Modifier.fillMaxWidth(),
             pointsText = pointsText
         )
+
         Spacer(modifier = Modifier.height(24.dp))
 
         PopularSurveySection(
-            modifier = Modifier.fillMaxWidth().padding(start = 10.dp)
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         MiniTestSection(
-            modifier = Modifier.fillMaxWidth().padding(start = 10.dp)
-            ,
+            modifier = Modifier.fillMaxWidth(),
             miniTests = miniTests
         )
 
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
@@ -57,9 +55,7 @@ private fun HomeScreenPreview() {
         MiniTestModel("요즘 당신의 최애 간식은 무엇인가요?", seconds = 50, points = 25),
         MiniTestModel("떠나고 싶으신 곳이 있으신가요?", seconds = 50, points = 25),
     )
-
     HomeScreen(
-        pointsText = "4,500P",
         miniTests = miniTests
     )
 }

@@ -1,9 +1,21 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.home.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,86 +30,74 @@ import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontBold
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 
 @Composable
-fun PointTransactionCard(
-    modifier: Modifier = Modifier,
-    pointsText: String = "4,500P",
+fun PointSection(
+    pointsText: String,
+    onExchangeClick: () -> Unit = {}
 ) {
-    Box(
-        modifier = modifier.fillMaxWidth()
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        CardSection(
-            modifier = Modifier.fillMaxWidth()
+
+        Column(
+            modifier = Modifier.weight(1f)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_point),
-                            contentDescription = "point",
-                            tint = Color.Unspecified,
-                            modifier = Modifier.size(24.dp)
-
-                        )
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Text(
-                            text = "나의 포인트",
-                            fontFamily = PanelNowFontSemiBold,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.W600
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = pointsText,
-                            fontFamily = PanelNowFontBold,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.W700
-                        )
-                        Spacer(modifier = Modifier.width(10.dp))
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_arrow_right),
-                            contentDescription = "arrow_right",
-                            tint = Color.Unspecified,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.width(20.dp))
-
-                CustomButton(
-                    onClick = { },
-                    modifier = Modifier.width(125.dp),
-                    text = "교환하기"
-                )
-            }
+            PointTitleRow()
+            Spacer(Modifier.height(8.dp))
+            PointValueRow(pointsText)
         }
 
-        Image(
-            painter = painterResource(id = R.drawable.img_point_character),
-            contentDescription = "Point Character",
-            modifier = Modifier
-                .width(138.dp)
-                .height(64.dp)
-                .align(Alignment.TopEnd)
-                .offset(y = (-62).dp)
+        Spacer(Modifier.width(20.dp))
+
+        CustomButton(
+            onClick = onExchangeClick,
+            modifier = Modifier.width(125.dp),
+            text = "교환하기"
         )
     }
 }
+
+@Composable
+private fun PointTitleRow() {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_point),
+            contentDescription = null,
+            tint = Color.Unspecified,
+            modifier = Modifier.size(24.dp)
+        )
+        Spacer(Modifier.width(10.dp))
+        Text(
+            text = "나의 포인트",
+            fontFamily = PanelNowFontSemiBold,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.W600
+        )
+    }
+}
+
+@Composable
+private fun PointValueRow(pointsText: String) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            text = pointsText,
+            fontFamily = PanelNowFontBold,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.W700
+        )
+        Spacer(Modifier.width(10.dp))
+        Icon(
+            painter = painterResource(id = R.drawable.ic_arrow_right),
+            contentDescription = null,
+            tint = Color.Unspecified,
+            modifier = Modifier.size(24.dp)
+        )
+    }
+}
+
 
 @Composable
 fun PointTransactionsSection(
@@ -107,7 +107,7 @@ fun PointTransactionsSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 30.dp, start = 10.dp)
+            .padding(top = 30.dp)
     ) {
         Text(
             text = "포인트 내역",
@@ -119,10 +119,34 @@ fun PointTransactionsSection(
 
         Spacer(modifier = Modifier.height(2.dp))
 
-        PointTransactionCard(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-            pointsText = pointsText
-        )
+        Box(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .fillMaxWidth()
+        ) {
+            Surface(
+                modifier = Modifier.fillMaxWidth(), color = White,
+                shape = RoundedCornerShape(10.dp),
+                tonalElevation = 8.dp
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp)
+                ) {
+                    PointSection(pointsText = pointsText, onExchangeClick = {})
+                }
+            }
+            Image(
+                painter = painterResource(id = R.drawable.img_point_character),
+                contentDescription = "Point Character",
+                modifier = Modifier
+                    .width(138.dp)
+                    .height(64.dp)
+                    .align(Alignment.TopEnd)
+                    .offset(y = (-62).dp)
+            )
+        }
     }
 }
 
