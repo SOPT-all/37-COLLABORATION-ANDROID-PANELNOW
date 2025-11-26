@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import org.sopt.sopt_collaboration_panelnow.core.common.extension.noRippleClickable
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 
 @Composable
@@ -15,11 +16,13 @@ fun ProductCard(
     title: String,
     businessDays: String,
     points: Int,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .width(160.dp)
+            .noRippleClickable(onClick)
     ) {
         AsyncImage(
             model = imageUrl,
@@ -65,6 +68,7 @@ private fun MyPointCardPreview() {
             title = "네이버페이 포인트쿠폰 3000원권",
             businessDays = "3",
             points = 3200,
+            onClick = {},
         )
     }
 }
