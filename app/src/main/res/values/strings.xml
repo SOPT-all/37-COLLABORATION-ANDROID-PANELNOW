@@ -8,6 +8,9 @@
     <string name="point_detail_coupon_locate">받으실 곳</string>
     <string name="point_detail_goods_detail">상품 상세</string>
     <string name="point_detail_guide">이용 안내</string>
+    <string name="point_detail_guide_info1">• 포인트 교환 신청 후 변경 또는 취소가 불가능합니다.</string>
+    <string name="point_detail_guide_info2">• 교환 예정일에 등록된 휴대폰 번호로 쿠폰번호가\n   MMS가 발송됩니다.</string>
+    <string name="point_detail_guide_info3">• 쿠폰 유효기간은 교환 일로부터 30일 이내이며 연장\n   불가 상품입니다. 자세한 사항은 교환 후 문자 메세지를\n   통해 확인해 주세요.</string>
 
     <!-- Point Exchange -->
     <string name="point_exchange_my_point">나의 포인트</string>

@@ -63,10 +63,14 @@ fun NaviHost(
         composable<Survey> { }
         composable<Event> { }
         composable<Exchange> {
-            PointExchangeRoute()
+            PointExchangeRoute(navController)
         }
         composable<MyAction> {
-            PointDetailRoute()
+        }
+        composable<Detail> { backStakEntry ->
+            val productId = backStakEntry.arguments?.getInt("productId") ?: -1
+
+            PointDetailRoute(productId, navController)
         }
 
     }

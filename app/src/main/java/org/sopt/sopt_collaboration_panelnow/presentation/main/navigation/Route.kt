@@ -19,3 +19,6 @@ data object Exchange : Route
 
 @Serializable
 data object MyAction : Route
+
+@Serializable
+data class Detail(val productId: Int): Route

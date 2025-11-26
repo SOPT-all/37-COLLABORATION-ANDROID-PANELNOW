@@ -25,9 +25,18 @@ fun MainScreen(
             route.contains("Event") -> Event
             route.contains("Exchange") -> Exchange
             route.contains("MyAction") -> MyAction
+            route.contains("Detail") -> Detail(-1)
             else -> null
         }
     }
+
+    val showBottomBar = currentDestination in listOf(
+        Home,
+        Survey,
+        Event,
+        Exchange,
+        MyAction
+    )
 
     val items = listOf(
         NavigationItem.SurveyItem,
@@ -40,26 +49,34 @@ fun MainScreen(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
-            CustomNavigatorBar(
-                items = items,
-                centerIndex = items.indexOf(NavigationItem.HomeItem),
-                currentRoute = currentDestination,
-                onItemClick = { item ->
-                    if (currentDestination == item.route) {
-                        return@CustomNavigatorBar
+            if (showBottomBar) {
+                CustomNavigatorBar(
+                    items = items,
+                    centerIndex = items.indexOf(NavigationItem.HomeItem),
+                    currentRoute = currentDestination,
+                    onItemClick = { item ->
+                        if (currentDestination == item.route) {
+                            return@CustomNavigatorBar
+                        }
+
+                        navController.navigate(item.route) {
+                            popUpTo(Home) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
 
-                    navController.navigate(item.route) {
-                        popUpTo(Home) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
                 }
             )
         },
         containerColor = PanelNowTheme.colors.white
+
+                )
+            }
+        }
+
     ) { padding ->
         NaviHost(
             navController = navController,
