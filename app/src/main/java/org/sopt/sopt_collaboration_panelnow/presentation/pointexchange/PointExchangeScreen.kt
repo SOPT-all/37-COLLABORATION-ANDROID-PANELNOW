@@ -1,6 +1,5 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.pointexchange
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,7 +14,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
@@ -25,7 +23,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
-import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 import org.sopt.sopt_collaboration_panelnow.domain.entity.Product
 import androidx.compose.runtime.getValue
@@ -33,17 +30,19 @@ import androidx.compose.material3.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Detail
+import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component.SortDropdown
 
 @Composable
 fun PointExchangeRoute(
     navController: NavHostController,
     viewModel: PointExchangeViewModel = hiltViewModel(),
 ) {
+    val sortOption by viewModel.sortOption.collectAsStateWithLifecycle()
     val products by viewModel.products.collectAsStateWithLifecycle()
     val pointExchangeUiState by viewModel.pointExchangeUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        viewModel.getProducts("default")
+        viewModel.getProducts(sortOption)
     }
 
     LaunchedEffect(Unit) {
@@ -53,11 +52,16 @@ fun PointExchangeRoute(
     PointExchangeScreen(
         currentPoint = pointExchangeUiState.currentPoint,
         usedPoint = pointExchangeUiState.usedPoint,
+        selectedSort = sortOption,
         products = products,
+        onSortSelected = { selected ->
+            viewModel.setSortOption(selected)
+            viewModel.getProducts(selected)
+        },
         onProductClick = { productId ->
             navController.navigate(Detail(pointExchangeUiState.currentPoint, productId))
 
-        }
+        },
     )
 }
 
@@ -65,7 +69,9 @@ fun PointExchangeRoute(
 fun PointExchangeScreen(
     currentPoint: Int,
     usedPoint: Int,
+    selectedSort: String,
     products: List<Product>,
+    onSortSelected: (String) -> Unit,
     onProductClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -99,12 +105,12 @@ fun PointExchangeScreen(
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_dropdown_popularity),
-                contentDescription = "Dropdown",
+            SortDropdown(
+                selectedSort = selectedSort,
+                onSortSelected = onSortSelected,
                 modifier = Modifier
-                    .width(94.dp)
-                    .height(32.dp),
+                    .width(130.dp)
+                    .height(36.dp)
             )
 
             LazyVerticalGrid(
@@ -148,7 +154,9 @@ private fun PointExchangeScreenPreview() {
         PointExchangeScreen(
             currentPoint = 4500,
             usedPoint = 4000,
+            selectedSort = "default",
             products = dummyProducts,
+            onSortSelected = {},
             onProductClick = {},
         )
     }
