@@ -21,4 +21,4 @@ data object Exchange : Route
 data object MyAction : Route
 
 @Serializable
-data class Detail(val productId: Int): Route
+data class Detail(val currentPoint: Int, val productId: Int): Route

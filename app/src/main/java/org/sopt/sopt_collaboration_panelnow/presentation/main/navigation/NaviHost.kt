@@ -68,9 +68,10 @@ fun NaviHost(
         composable<MyAction> {
         }
         composable<Detail> { backStakEntry ->
+            val currentPoint = backStakEntry.arguments?.getInt("currentPoint") ?: -1
             val productId = backStakEntry.arguments?.getInt("productId") ?: -1
 
-            PointDetailRoute(productId, navController)
+            PointDetailRoute(currentPoint, productId, navController)
         }
 
     }

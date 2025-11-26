@@ -30,9 +30,9 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.P
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.component.PointPaySection
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.viewmodel.PointDetailViewModel
 
-
 @Composable
 fun PointDetailRoute(
+    currentPoint: Int,
     productId: Int,
     navController: NavController,
     viewModel: PointDetailViewModel = hiltViewModel(),

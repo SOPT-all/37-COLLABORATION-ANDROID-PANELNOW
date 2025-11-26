@@ -55,7 +55,7 @@ fun PointExchangeRoute(
         usedPoint = pointExchangeUiState.usedPoint,
         products = products,
         onProductClick = { productId ->
-            navController.navigate(Detail(productId))
+            navController.navigate(Detail(pointExchangeUiState.currentPoint, productId))
 
         }
     )

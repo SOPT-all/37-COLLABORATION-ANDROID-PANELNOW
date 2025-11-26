@@ -25,7 +25,7 @@ fun MainScreen(
             route.contains("Event") -> Event
             route.contains("Exchange") -> Exchange
             route.contains("MyAction") -> MyAction
-            route.contains("Detail") -> Detail(-1)
+            route.contains("Detail") -> Detail(-1, -1)
             else -> null
         }
     }
