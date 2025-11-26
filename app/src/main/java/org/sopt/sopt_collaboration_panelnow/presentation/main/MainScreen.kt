@@ -67,20 +67,16 @@ fun MainScreen(
                             restoreState = true
                         }
                     }
-
-                }
-            )
-        },
-        containerColor = PanelNowTheme.colors.white
-
                 )
             }
-        }
-
-    ) { padding ->
+        },
+        containerColor = PanelNowTheme.colors.white
+    ) {
+            padding ->
         NaviHost(
             navController = navController,
             innerPadding = padding
         )
     }
 }
+
