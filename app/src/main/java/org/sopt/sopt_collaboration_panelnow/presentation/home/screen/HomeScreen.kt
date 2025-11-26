@@ -4,9 +4,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.MiniTestSection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.PointTransactionsSection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.PopularSurveySection
@@ -16,9 +21,14 @@ import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestMode
 fun HomeScreen(
     miniTests: List<MiniTestModel>,
     modifier: Modifier = Modifier,
-    pointsText: String = "4,500P",
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val scrollState = rememberScrollState()
+    val homeUiState by viewModel.homeUiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.getCurrentPoint()
+    }
 
     Column(
         modifier = modifier
@@ -28,7 +38,7 @@ fun HomeScreen(
 
         PointTransactionsSection(
             modifier = Modifier.fillMaxWidth(),
-            pointsText = pointsText
+            pointsText = "%,dP".format(homeUiState.currentPoint)
         )
 
         Spacer(modifier = Modifier.height(24.dp))
