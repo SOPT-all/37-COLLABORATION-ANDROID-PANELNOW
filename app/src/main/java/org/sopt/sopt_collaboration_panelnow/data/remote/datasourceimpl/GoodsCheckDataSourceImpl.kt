@@ -17,6 +17,6 @@ class GoodsCheckDataSourceImpl @Inject constructor(
     override suspend fun getGoodsCheck(productId: Int): BaseResponse<GoodsCheckResponse> =
         goodsCheckService.getGoodsCheck(productId)
 
-    override suspend fun postPurchase(userId: Long, productId: Int): BaseResponse<PurchaseResponse> =
+    override suspend fun postPurchase(userId: Long, productId: Int): PurchaseResponse =
         goodsCheckService.postPurchase(userId, productId)
 }

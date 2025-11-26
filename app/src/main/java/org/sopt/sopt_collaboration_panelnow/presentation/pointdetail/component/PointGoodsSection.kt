@@ -18,7 +18,6 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 
 @Composable
 fun PointGoodsSection(
-    detailText: String,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -37,12 +36,31 @@ fun PointGoodsSection(
             modifier = Modifier
                 .align(Alignment.Start),
         )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp, vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Text(
+                text = stringResource(id = R.string.point_detail_guide_info1),
+                style = PanelNowTheme.typography.bodyR14,
+                color = PanelNowTheme.colors.gray6,
+            )
 
-        Text(
-            text = detailText,
-            style = PanelNowTheme.typography.bodyR14,
-            color = PanelNowTheme.colors.gray6,
-        )
+            Text(
+                text = stringResource(id = R.string.point_detail_guide_info2),
+                style = PanelNowTheme.typography.bodyR14,
+                color = PanelNowTheme.colors.gray6,
+            )
+
+            Text(
+                text = stringResource(id = R.string.point_detail_guide_info3),
+                style = PanelNowTheme.typography.bodyR14,
+                color = PanelNowTheme.colors.gray6,
+            )
+        }
+
     }
 }
 
@@ -50,8 +68,6 @@ fun PointGoodsSection(
 @Composable
 private fun ReviewPointGoodsSection() {
     PanelNowTheme {
-        PointGoodsSection(
-            detailText = "상품 상세 정보",
-        )
+        PointGoodsSection()
     }
 }
