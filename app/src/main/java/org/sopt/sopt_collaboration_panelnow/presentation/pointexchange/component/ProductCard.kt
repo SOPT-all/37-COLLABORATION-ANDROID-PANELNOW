@@ -16,8 +16,8 @@ fun ProductCard(
     title: String,
     businessDays: String,
     points: Int,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
