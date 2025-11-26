@@ -17,6 +17,11 @@ class PointDetailViewModel @Inject constructor(
     private val _goodsCheckState = MutableStateFlow(GoodsCheck.Empty)
     val goodsCheckState: StateFlow<GoodsCheck> = _goodsCheckState
 
+    private val _purchaseSuccess = MutableStateFlow(false)
+    val purchaseSuccess: StateFlow<Boolean> = _purchaseSuccess
+
+    private val userId: Long = 1L
+
     fun getGoodsCheck(productId: Int) {
         viewModelScope.launch {
             goodsCheckRepository.getGoodsCheck(productId)
@@ -26,5 +31,20 @@ class PointDetailViewModel @Inject constructor(
                 .onFailure {
                 }
         }
+    }
+
+    fun postPurchase(productId: Int) {
+        viewModelScope.launch {
+            goodsCheckRepository.postPurchase(userId, productId)
+                .onSuccess {
+                    _purchaseSuccess.value = true
+                }
+                .onFailure {
+                }
+        }
+    }
+
+    fun resetPurchaseSuccess() {
+        _purchaseSuccess.value = false
     }
 }
