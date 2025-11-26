@@ -8,5 +8,5 @@ import org.sopt.sopt_collaboration_panelnow.data.remote.dto.response.PurchaseRes
 interface GoodsCheckDataSource {
     suspend fun getProducts(sort: String): BaseResponse<List<ProductResponse>>
     suspend fun getGoodsCheck(productId: Int): BaseResponse<GoodsCheckResponse>
-    suspend fun postPurchase(userId: Long, productId: Int): BaseResponse<PurchaseResponse>
+    suspend fun postPurchase(userId: Long, productId: Int): PurchaseResponse
 }
