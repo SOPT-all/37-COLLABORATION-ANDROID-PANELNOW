@@ -1,5 +1,6 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.main
 
+import CustomNavigatorBar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -7,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.*
 
 @Composable
@@ -23,9 +25,18 @@ fun MainScreen(
             route.contains("Event") -> Event
             route.contains("Exchange") -> Exchange
             route.contains("MyAction") -> MyAction
+            route.contains("Detail") -> Detail(-1)
             else -> null
         }
     }
+
+    val showBottomBar = currentDestination in listOf(
+        Home,
+        Survey,
+        Event,
+        Exchange,
+        MyAction
+    )
 
     val items = listOf(
         NavigationItem.SurveyItem,
@@ -38,29 +49,34 @@ fun MainScreen(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
-            CustomNavigatorBar(
-                items = items,
-                centerIndex = items.indexOf(NavigationItem.HomeItem),
-                currentRoute = currentDestination,
-                onItemClick = { item ->
-                    if (currentDestination == item.route) {
-                        return@CustomNavigatorBar
-                    }
-
-                    navController.navigate(item.route) {
-                        popUpTo(Home) {
-                            saveState = true
+            if (showBottomBar) {
+                CustomNavigatorBar(
+                    items = items,
+                    centerIndex = items.indexOf(NavigationItem.HomeItem),
+                    currentRoute = currentDestination,
+                    onItemClick = { item ->
+                        if (currentDestination == item.route) {
+                            return@CustomNavigatorBar
                         }
-                        launchSingleTop = true
-                        restoreState = true
+
+                        navController.navigate(item.route) {
+                            popUpTo(Home) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
-                }
-            )
-        }
-    ) { padding ->
+                )
+            }
+        },
+        containerColor = PanelNowTheme.colors.white
+    ) {
+            padding ->
         NaviHost(
             navController = navController,
             innerPadding = padding
         )
     }
 }
+

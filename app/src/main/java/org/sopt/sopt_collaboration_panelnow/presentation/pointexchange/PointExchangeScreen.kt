@@ -31,9 +31,12 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNow
 import org.sopt.sopt_collaboration_panelnow.domain.entity.Product
 import androidx.compose.runtime.getValue
 import androidx.compose.material3.Text
+import androidx.navigation.NavHostController
+import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Detail
 
 @Composable
 fun PointExchangeRoute(
+    navController: NavHostController,
     viewModel: PointExchangeViewModel = hiltViewModel(),
 ) {
     val products by viewModel.products.collectAsState()
@@ -42,12 +45,19 @@ fun PointExchangeRoute(
         viewModel.getProducts("default")
     }
 
-    PointExchangeScreen(products = products)
+    PointExchangeScreen(
+        products = products,
+        onProductClick = { productId ->
+            navController.navigate(Detail(productId))
+
+        }
+    )
 }
 
 @Composable
 fun PointExchangeScreen(
     products: List<Product>,
+    onProductClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -101,8 +111,10 @@ fun PointExchangeScreen(
                             title = product.name,
                             businessDays = product.day,
                             points = product.price,
-                            modifier = Modifier
-                                .wrapContentWidth()
+                            modifier = Modifier.wrapContentWidth(),
+                            onClick = {
+                                onProductClick(product.id)
+                            },
                         )
                     }
                 }
@@ -124,6 +136,9 @@ private fun PointExchangeScreenPreview() {
     )
 
     PanelNowTheme {
-        PointExchangeScreen(products = dummyProducts)
+        PointExchangeScreen(
+            products = dummyProducts,
+            onProductClick = {},
+        )
     }
 }

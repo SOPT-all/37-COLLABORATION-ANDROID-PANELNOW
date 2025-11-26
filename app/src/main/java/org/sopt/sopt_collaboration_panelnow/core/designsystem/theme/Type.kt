@@ -61,7 +61,7 @@ val defaultPanelNowTypography = PanelNowTypography(
         fontFamily = PanelNowFontMedium,
         fontWeight = FontWeight.W500,
         fontSize = 12.sp,
-        lineHeight = 12.sp,
+        lineHeight = (12 * 1.4).sp,
         letterSpacing = 0.sp
     ),
 
@@ -76,7 +76,7 @@ val defaultPanelNowTypography = PanelNowTypography(
         fontFamily = PanelNowFontRegular,
         fontWeight = FontWeight.W400,
         fontSize = 14.sp,
-        lineHeight = 14.sp,
+        lineHeight = (14 * 1.35).sp,
         letterSpacing = 0.sp
     ),
     bodyM12 = TextStyle(

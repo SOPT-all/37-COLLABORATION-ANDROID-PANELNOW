@@ -82,7 +82,7 @@ sealed class NavigationItem(
 }
 
 @Composable
-private fun NavigatorBarItem(
+ fun NavigatorBarItem(
     item: NavigationItem,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -105,116 +105,6 @@ private fun NavigatorBarItem(
             else
                 MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
             style = MaterialTheme.typography.labelSmall
-        )
-    }
-}
-
-@Composable
-fun CustomNavigatorBar(
-    items: List<NavigationItem>,
-    centerIndex: Int,
-    currentRoute: Route?,
-    onItemClick: (NavigationItem) -> Unit
-) {
-    if (items.isEmpty() || centerIndex !in items.indices) return
-    val centerItem = items[centerIndex]
-    val leftItems = items.take(centerIndex)
-    val rightItems = items.drop(centerIndex + 1)
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(75.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-
-        ) {
-            Image(
-                painter = painterResource(R.drawable.ic_nav_background),
-                contentDescription = "Navigator Background",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(75.dp)
-                    .aspectRatio(402f / 162f),
-                contentScale = ContentScale.FillWidth
-            )
-
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 24.dp, vertical = 6.dp)
-                    .offset(y = (-35).dp),
-                verticalAlignment = Alignment.CenterVertically,
-
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                leftItems.forEach { item ->
-                    NavigatorBarItem(
-                        item = item,
-                        isSelected = currentRoute == item.route,
-                        onClick = { onItemClick(item) }
-                    )
-                }
-                Spacer(modifier = Modifier.width(30.dp))
-                rightItems.forEach { item ->
-                    NavigatorBarItem(
-                        item = item,
-                        isSelected = currentRoute == item.route,
-                        onClick = { onItemClick(item) }
-                    )
-                }
-            }
-        }
-        FloatingActionButton(
-            onClick = { onItemClick(centerItem) },
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .size(height = 65.dp, width = 63.dp)
-                .offset(y = (-40).dp),
-            shape = CircleShape,
-            containerColor = Color(0xFF00A8FF),
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        ) {
-            Icon(
-                painter = painterResource(id = centerItem.selectedIcons),
-                contentDescription = centerItem.label,
-                tint = Color.Unspecified
-            )
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CustomNavigatorBarPreview() {
-    var currentRoute by remember { mutableStateOf<Route?>(Home) }
-    val items = listOf(
-        NavigationItem.SurveyItem,
-        NavigationItem.EventItem,
-        NavigationItem.HomeItem,
-        NavigationItem.ExchangeItem,
-        NavigationItem.MyActionItem
-    )
-    Scaffold(
-        containerColor = Color(0xFFE0F7FA),
-        bottomBar = {
-            CustomNavigatorBar(
-                items = items,
-                centerIndex = 2,
-                currentRoute = currentRoute,
-                onItemClick = { item ->
-                    currentRoute = item.route
-                }
-            )
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-                .background(Color(0xFFE0F7FA))
         )
     }
 }

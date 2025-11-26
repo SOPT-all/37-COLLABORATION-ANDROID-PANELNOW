@@ -4,24 +4,25 @@ data class GoodsCheck(
     val id: Int,
     val imageUrl: String,
     val name: String,
-    val price: Long,
+    val price: Int,
     val phoneNumber: String,
     val exchangeDay: String,
-    val info: String,
-    val usageManual: String,
-    val guide: String,
+    val infoSections: List<InfoSection>
 ) {
     companion object {
         val Empty = GoodsCheck(
-            id = -1,
+            id = 0,
             imageUrl = "",
-            name = "로딩 중...",
-            price = 0L,
+            name = "",
+            price = 0,
             phoneNumber = "",
             exchangeDay = "",
-            info = "",
-            usageManual = "",
-            guide = "",
+            infoSections = emptyList()
         )
     }
 }
+
+data class InfoSection(
+    val label: String,
+    val content: String
+)
