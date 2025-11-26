@@ -6,6 +6,7 @@ import org.sopt.sopt_collaboration_panelnow.data.remote.dto.response.ProductResp
 import org.sopt.sopt_collaboration_panelnow.data.remote.dto.response.PurchaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -20,9 +21,9 @@ interface GoodsCheckService {
         @Path("productId") productId: Int,
     ): BaseResponse<GoodsCheckResponse>
 
-    @GET("products/{productId}/purchase")
+    @POST("products/{productId}/purchase")
     suspend fun postPurchase(
         @Header("userId") userId: Long,
         @Path("productId") productId: Int,
-    ): BaseResponse<PurchaseResponse>
+    ): PurchaseResponse
 }
