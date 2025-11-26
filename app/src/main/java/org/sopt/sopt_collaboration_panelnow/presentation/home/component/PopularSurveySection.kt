@@ -64,9 +64,7 @@ fun PopularSurveySection(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
                 contentDescription = "arrow_right",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(
-                    height = 24.dp, width = 24.dp
-                )
+                modifier = Modifier.size(24.dp)
             )
         }
 

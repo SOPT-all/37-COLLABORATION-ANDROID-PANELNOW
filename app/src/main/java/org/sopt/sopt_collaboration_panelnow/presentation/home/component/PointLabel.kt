@@ -33,7 +33,7 @@ fun PointLabel(points: String, modifier: Modifier = Modifier) {
             text = points,
             modifier
                 .fillMaxWidth()
-                .padding(3.dp),
+                .padding(1.dp),
             color = MainBlue,
             fontSize = 12.sp,
             fontFamily = PanelNowFontMedium,
