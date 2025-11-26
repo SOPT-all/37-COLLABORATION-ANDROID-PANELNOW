@@ -21,7 +21,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.common.extension.dropShadow
 import org.sopt.sopt_collaboration_panelnow.core.common.extension.noRippleClickable
+import org.sopt.sopt_collaboration_panelnow.core.common.util.toPointFormat
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 
 @Composable
@@ -58,7 +60,7 @@ fun PointPaySection(
             )
 
             Text(
-                text = myPoint,
+                text = myPoint.toPointFormat(),
                 style = PanelNowTheme.typography.titleSb16,
                 color = PanelNowTheme.colors.mainBlue
             )
@@ -100,8 +102,8 @@ private fun PayButton(
         PanelNowTheme.colors.gray2
     }
 
-    Box(
-        modifier = modifier
+    val buttonModifier = if (isEnabled) {
+        modifier
             .background(
                 color = backgroundColor,
                 shape = RoundedCornerShape(
@@ -110,10 +112,36 @@ private fun PayButton(
                     bottomEnd = 32.dp
                 )
             )
-            .noRippleClickable(
-                onClick = onPayClick
+            .dropShadow(
+                shape = RoundedCornerShape(
+                    topStart = 16.dp,
+                    topEnd = 32.dp,
+                    bottomEnd = 32.dp
+                ),
+                color = PanelNowTheme.colors.mainBlue.copy(alpha = 0.5f),
+                blur = 10.dp,
+                offsetY = 0.dp,
+                offsetX = 0.dp,
+                spread = 0.dp
             )
-            .padding(vertical = 16.dp),
+            .noRippleClickable(onClick = onPayClick)
+            .padding(vertical = 16.dp)
+    } else {
+        modifier
+            .background(
+                color = backgroundColor,
+                shape = RoundedCornerShape(
+                    topStart = 16.dp,
+                    topEnd = 32.dp,
+                    bottomEnd = 32.dp
+                )
+            )
+            .noRippleClickable(onClick = onPayClick)
+            .padding(vertical = 16.dp)
+    }
+
+    Box(
+        modifier = buttonModifier,
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -136,13 +164,13 @@ private fun ReviewPointPaySection() {
         ) {
             PointPaySection(
                 label = "500P 교환하기",
-                myPoint = "4500P",
+                myPoint = "4500",
                 canPayed = false,
                 iconRes = R.drawable.ic_point
             )
             PointPaySection(
                 label = "500P 교환하기",
-                myPoint = "4500P",
+                myPoint = "4500",
                 canPayed = true,
                 iconRes = R.drawable.ic_point
             )
