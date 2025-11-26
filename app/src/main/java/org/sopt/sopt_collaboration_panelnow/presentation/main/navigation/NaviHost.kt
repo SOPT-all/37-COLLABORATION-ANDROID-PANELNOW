@@ -8,6 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
+import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
+import org.sopt.sopt_collaboration_panelnow.presentation.home.screen.HomeScreen
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.PointDetailRoute
 import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.PointExchangeRoute
 
@@ -24,7 +27,12 @@ fun NaviHost(
             .padding(innerPadding)
             .fillMaxSize()
     ) {
-        composable<Home> { } // 이 안에 각자 스크린 넣으시면 됩니다
+        composable<Home> {
+            HomeScreen(
+                pointsText = "4,500P",
+                miniTests = miniTestList
+            )
+        } // 이 안에 각자 스크린 넣으시면 됩니다
         composable<Survey> { }
         composable<Event> { }
         composable<Exchange> {

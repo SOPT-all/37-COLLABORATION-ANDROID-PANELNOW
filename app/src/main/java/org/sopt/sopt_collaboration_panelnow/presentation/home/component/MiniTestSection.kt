@@ -29,7 +29,7 @@ import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
 @Composable
 fun MiniTestSection(
     modifier: Modifier = Modifier,
-    miniTests: List<MiniTestModel>,
+    miniTests: List<MiniTestModel> = miniTestList,
 ) {
     Column(
         modifier = modifier
