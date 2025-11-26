@@ -24,13 +24,13 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 import org.sopt.sopt_collaboration_panelnow.domain.entity.Product
 import androidx.compose.runtime.getValue
 import androidx.compose.material3.Text
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Detail
 
@@ -39,13 +39,20 @@ fun PointExchangeRoute(
     navController: NavHostController,
     viewModel: PointExchangeViewModel = hiltViewModel(),
 ) {
-    val products by viewModel.products.collectAsState()
+    val products by viewModel.products.collectAsStateWithLifecycle()
+    val pointExchangeUiState by viewModel.pointExchangeUiState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.getProducts("default")
     }
 
+    LaunchedEffect(Unit) {
+        viewModel.getUserPoint()
+    }
+
     PointExchangeScreen(
+        currentPoint = pointExchangeUiState.currentPoint,
+        usedPoint = pointExchangeUiState.usedPoint,
         products = products,
         onProductClick = { productId ->
             navController.navigate(Detail(productId))
@@ -56,6 +63,8 @@ fun PointExchangeRoute(
 
 @Composable
 fun PointExchangeScreen(
+    currentPoint: Int,
+    usedPoint: Int,
     products: List<Product>,
     onProductClick: (Int) -> Unit,
     modifier: Modifier = Modifier,
@@ -76,8 +85,8 @@ fun PointExchangeScreen(
         )
 
         MyPointCard(
-            currentPoint = 4500,
-            exchangedPoint = 4000
+            currentPoint = currentPoint,
+            usedPoint = usedPoint,
         )
         Column(
             modifier = Modifier
@@ -137,6 +146,8 @@ private fun PointExchangeScreenPreview() {
 
     PanelNowTheme {
         PointExchangeScreen(
+            currentPoint = 4500,
+            usedPoint = 4000,
             products = dummyProducts,
             onProductClick = {},
         )

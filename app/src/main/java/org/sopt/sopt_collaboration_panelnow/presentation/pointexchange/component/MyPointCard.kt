@@ -27,7 +27,7 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 @Composable
 fun MyPointCard(
     currentPoint: Int,
-    exchangedPoint: Int,
+    usedPoint: Int,
     modifier: Modifier = Modifier,
 ) {
     Box(
@@ -89,7 +89,7 @@ fun MyPointCard(
                 )
 
                 Text(
-                    text = " %,dP".format(exchangedPoint),
+                    text = " %,dP".format(usedPoint),
                     style = PanelNowTheme.typography.titleM14,
                     color = PanelNowTheme.colors.mainBlue,
                 )
@@ -113,7 +113,7 @@ private fun MyPointCardPreview() {
     PanelNowTheme {
         MyPointCard(
             currentPoint = 4500,
-            exchangedPoint = 4000,
+            usedPoint = 4000,
         )
     }
 }
