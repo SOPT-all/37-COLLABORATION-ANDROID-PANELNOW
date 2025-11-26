@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.sopt.sopt_collaboration_panelnow.BuildConfig
 import org.sopt.sopt_collaboration_panelnow.data.remote.service.GoodsCheckService
+import org.sopt.sopt_collaboration_panelnow.data.remote.service.UserService
 import retrofit2.Converter
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
@@ -29,7 +30,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideJsonConverter(json: Json): Converter.Factory = json.asConverterFactory("application/json".toMediaType())
+    fun provideJsonConverter(json: Json): Converter.Factory =
+        json.asConverterFactory("application/json".toMediaType())
 
     @Provides
     @Singleton
@@ -69,4 +71,10 @@ object NetworkModule {
     @Singleton
     fun provideGoodsCheckService(retrofit: Retrofit): GoodsCheckService =
         retrofit.create(GoodsCheckService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
 }

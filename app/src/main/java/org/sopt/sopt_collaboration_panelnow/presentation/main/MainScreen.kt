@@ -1,5 +1,6 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.main
 
+import CustomNavigatorBar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -7,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.*
 
 @Composable
@@ -65,9 +67,16 @@ fun MainScreen(
                             restoreState = true
                         }
                     }
+
+                }
+            )
+        },
+        containerColor = PanelNowTheme.colors.white
+
                 )
             }
         }
+
     ) { padding ->
         NaviHost(
             navController = navController,
