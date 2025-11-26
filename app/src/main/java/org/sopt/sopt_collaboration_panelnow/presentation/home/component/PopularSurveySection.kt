@@ -65,7 +65,7 @@ fun PopularSurveySection(
                 contentDescription = "arrow_right",
                 tint = Color.Unspecified,
                 modifier = Modifier.size(
-                    height = 12.dp, width = 6.dp
+                    height = 24.dp, width = 24.dp
                 )
             )
         }

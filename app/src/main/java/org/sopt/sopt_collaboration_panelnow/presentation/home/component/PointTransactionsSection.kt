@@ -26,11 +26,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontBold
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
+import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.PointExchangeRoute
 
 @Composable
 fun PointSection(
@@ -103,6 +106,7 @@ private fun PointValueRow(pointsText: String) {
 fun PointTransactionsSection(
     modifier: Modifier = Modifier,
     pointsText: String = "4,500P",
+    onExchangeClick : () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -134,7 +138,7 @@ fun PointTransactionsSection(
                         .fillMaxWidth()
                         .padding(24.dp)
                 ) {
-                    PointSection(pointsText = pointsText, onExchangeClick = {})
+                    PointSection(pointsText = pointsText, onExchangeClick = onExchangeClick)
                 }
             }
             Image(
