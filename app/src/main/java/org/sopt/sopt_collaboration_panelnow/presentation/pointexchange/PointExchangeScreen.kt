@@ -32,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.material3.Text
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Detail
 
 @Composable

@@ -53,7 +53,16 @@ fun NaviHost(
                     )
                 }
                 HomeScreen(
-                    miniTests = miniTestList
+                    miniTests = miniTestList,
+                    onExchangeClick = {
+                        navController.navigate(Exchange) {
+                            popUpTo(Home) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 )
 
             }

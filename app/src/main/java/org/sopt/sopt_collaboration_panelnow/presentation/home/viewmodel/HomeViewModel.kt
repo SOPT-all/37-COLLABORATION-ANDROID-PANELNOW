@@ -1,6 +1,5 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,13 +22,12 @@ class HomeViewModel @Inject constructor(
     fun getCurrentPoint() {
         viewModelScope.launch {
             delay(200)
-            userRepository.getUser(1)
+            userRepository.getUser(6)
                 .onSuccess { user ->
                     _homeUiState.update {
                         it.copy(currentPoint = user.currentPoint)
                     }
                 }.onFailure {
-                    Log.e("HomeViewModel", "getCurrentPoint: $it")
                 }
 
         }
