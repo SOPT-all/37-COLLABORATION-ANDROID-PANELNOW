@@ -56,6 +56,7 @@ fun PointDetailRoute(
     }
 
     PointDetailScreen(
+        currentPoint = currentPoint,
         goodsCheckState = goodsCheckState,
         onPurchaseClick = {
             viewModel.postPurchase(productId)
@@ -65,10 +66,13 @@ fun PointDetailRoute(
 
 @Composable
 fun PointDetailScreen(
+    currentPoint: Int,
     goodsCheckState: GoodsCheck,
     modifier: Modifier = Modifier,
     onPurchaseClick: () -> Unit = {},
 ) {
+    val canPurchase = currentPoint >= goodsCheckState.price
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -114,10 +118,10 @@ fun PointDetailScreen(
 
         PointPaySection(
             label = "교환하기",
-            myPoint = "5000",
+            myPoint = currentPoint.toString(),
             modifier = modifier
                 .align(alignment = Alignment.BottomCenter),
-            canPayed = true,
+            canPayed = canPurchase,
             iconRes = R.drawable.ic_point,
             onPayClick = onPurchaseClick
         )
@@ -128,6 +132,9 @@ fun PointDetailScreen(
 @Composable
 private fun PreviewPointdetailScreen() {
     PanelNowTheme {
-        PointDetailScreen(goodsCheckState = GoodsCheck.Empty)
+        PointDetailScreen(
+            currentPoint = 5000,
+            goodsCheckState = GoodsCheck.Empty
+        )
     }
 }
