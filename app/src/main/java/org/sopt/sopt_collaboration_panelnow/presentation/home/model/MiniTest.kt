@@ -14,7 +14,7 @@ val miniTestList = listOf(
         points = 25
     ),
     MiniTestModel(
-        title = "요즘 당신의 최애 간식은 무엇인가요?",
+        title = "요즘 당신의 최애 간식은  \n무엇인가요?",
         seconds = 50,
         points = 25
     ),

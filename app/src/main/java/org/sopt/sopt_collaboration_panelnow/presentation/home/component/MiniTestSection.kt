@@ -40,11 +40,11 @@ fun MiniTestSection(
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(miniTests) { item ->
                 MiniTestCard(
@@ -64,32 +64,34 @@ fun MiniTestCard(
     seconds: Int,
     points: Int,
 ) {
-        Column(
-            modifier = modifier .width(250.dp)
-                .height(168.dp)
-                .padding(8.dp)
-                .background(color = PanelNowTheme.colors.white, shape = RoundedCornerShape(20.dp)).padding(20.dp)
+    Column(
+        modifier = modifier
+            .width(250.dp)
+            .height(168.dp)
+            .background(color = PanelNowTheme.colors.white, shape = RoundedCornerShape(20.dp))
+            .padding(20.dp)
 
-        ) {
+    ) {
 
-            Text(
-                text = "${seconds}초",
-                style = PanelNowTheme.typography.titleM12,
-                color = PanelNowTheme.colors.gray2
+        Text(
+            text = "${seconds}초",
+            style = PanelNowTheme.typography.titleM12,
+            color = PanelNowTheme.colors.gray2
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Text(
+            text = title,
+            modifier = Modifier.padding(end = 10.dp),
+            style = PanelNowTheme.typography.titleSb16,
+
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(45.dp))
 
-            Text(
-                text = title,
-                style = PanelNowTheme.typography.titleSb16,
-            )
-
-            Spacer(modifier = Modifier.height(20.dp))
-            Spacer(modifier = Modifier.weight(1f))
-
-            PointLabel(points = "${points}P")
-        }
+        PointLabel(points = "${points}P")
+    }
 }
 
 @Preview(showBackground = true)
