@@ -12,17 +12,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Icon
-import androidx.compose.ui.text.font.FontWeight
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray1
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray2
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray3
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.PopularSurveyModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.popularSurveyList
@@ -37,6 +33,7 @@ fun PopularSurveySection(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -45,28 +42,24 @@ fun PopularSurveySection(
 
             Text(
                 text = "인기 설문",
-                fontSize = 16.sp,
-                fontFamily = PanelNowFontSemiBold,
-                fontWeight = FontWeight.W600
+                style = PanelNowTheme.typography.titleSb16,
             )
 
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
                 text = "전체보기",
-                fontSize = 12.sp,
-                fontFamily = PanelNowFontMedium,
-                fontWeight = FontWeight.W500,
+                style = PanelNowTheme.typography.bodyR14,
                 color = Gray2
             )
-            Spacer(modifier = Modifier.width(4.dp))
+
+            Spacer(modifier = Modifier.width(2.dp))
+
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
                 contentDescription = "arrow_right",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(
-                    height = 24.dp, width = 24.dp
-                )
+                modifier = Modifier.size(24.dp)
             )
         }
 
@@ -74,13 +67,14 @@ fun PopularSurveySection(
 
         Surface(
             modifier = Modifier.fillMaxWidth(), color = White,
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(12.dp),
             tonalElevation = 8.dp
         ) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 surveys.forEach { survey ->
@@ -89,6 +83,7 @@ fun PopularSurveySection(
                     )
                 }
             }
+
         }
     }
 }
@@ -101,12 +96,13 @@ private fun PopularSurveyCard(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Box(
             modifier = Modifier
                 .size(56.dp)
                 .background(
                     color = Gray3,
-                    shape = RoundedCornerShape(18.dp)
+                    shape = RoundedCornerShape(10.dp)
                 ),
             contentAlignment = Alignment.Center
         ) {
@@ -123,18 +119,20 @@ private fun PopularSurveyCard(
         Column(
             modifier = Modifier.weight(1f)
         ) {
+
             Text(
                 text = survey.title,
-                fontFamily = PanelNowFontSemiBold,
-                fontSize = 16.sp
+                style = PanelNowTheme.typography.titleSb16
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = "${survey.minutes}분",
-                fontFamily = PanelNowFontRegular,
-                fontSize = 13.sp,
+                style = PanelNowTheme.typography.bodyM12,
                 color = Gray1
             )
+
         }
 
         PointLabel(

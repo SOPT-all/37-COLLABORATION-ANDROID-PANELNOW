@@ -22,18 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontBold
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
-import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.PointExchangeRoute
 
 @Composable
 fun PointSection(
@@ -58,46 +52,55 @@ fun PointSection(
         CustomButton(
             onClick = onExchangeClick,
             modifier = Modifier.width(125.dp),
-            text = "교환하기"
         )
+
     }
 }
 
 @Composable
-private fun PointTitleRow() {
+private fun PointTitleRow(
+    modifier: Modifier = Modifier
+) {
     Row(verticalAlignment = Alignment.CenterVertically) {
+
         Icon(
             painter = painterResource(id = R.drawable.ic_point),
             contentDescription = null,
             tint = Color.Unspecified,
             modifier = Modifier.size(24.dp)
         )
+
         Spacer(Modifier.width(10.dp))
+
         Text(
             text = "나의 포인트",
-            fontFamily = PanelNowFontSemiBold,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.W600
+            style = PanelNowTheme.typography.titleSb16,
         )
+
     }
 }
 
 @Composable
-private fun PointValueRow(pointsText: String) {
+private fun PointValueRow(
+    pointsText: String,
+    modifier: Modifier = Modifier
+) {
     Row(verticalAlignment = Alignment.CenterVertically) {
+
         Text(
             text = pointsText,
-            fontFamily = PanelNowFontBold,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.W700
+            style = PanelNowTheme.typography.titleBd24
         )
+
         Spacer(Modifier.width(10.dp))
+
         Icon(
             painter = painterResource(id = R.drawable.ic_arrow_right),
             contentDescription = null,
             tint = Color.Unspecified,
             modifier = Modifier.size(24.dp)
         )
+
     }
 }
 
@@ -106,19 +109,20 @@ private fun PointValueRow(pointsText: String) {
 fun PointTransactionsSection(
     modifier: Modifier = Modifier,
     pointsText: String = "4,500P",
-    onExchangeClick : () -> Unit = {}
-) {
+    onExchangeClick: () -> Unit = {},
+
+    ) {
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 30.dp)
     ) {
+
         Text(
             text = "포인트 내역",
-            fontFamily = PanelNowFontSemiBold,
             modifier = Modifier.padding(horizontal = 16.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.W600
+            style = PanelNowTheme.typography.titleSb16,
         )
 
         Spacer(modifier = Modifier.height(2.dp))
@@ -128,11 +132,13 @@ fun PointTransactionsSection(
                 .padding(horizontal = 16.dp, vertical = 8.dp)
                 .fillMaxWidth()
         ) {
+
             Surface(
                 modifier = Modifier.fillMaxWidth(), color = White,
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(12.dp),
                 tonalElevation = 8.dp
             ) {
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -141,6 +147,7 @@ fun PointTransactionsSection(
                     PointSection(pointsText = pointsText, onExchangeClick = onExchangeClick)
                 }
             }
+
             Image(
                 painter = painterResource(id = R.drawable.img_point_character),
                 contentDescription = "Point Character",
@@ -160,6 +167,7 @@ private fun PointTransactionsSectionPreview() {
     Scaffold(
         containerColor = Gray4
     ) { innerPadding ->
+
         Box(
             modifier = Modifier
                 .padding(innerPadding)
@@ -170,5 +178,6 @@ private fun PointTransactionsSectionPreview() {
                 pointsText = "4,500P",
             )
         }
+
     }
 }

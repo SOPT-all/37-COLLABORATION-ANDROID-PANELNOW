@@ -1,5 +1,6 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.home.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,14 +16,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
 
@@ -34,13 +31,12 @@ fun MiniTestSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 30.dp)
+            .padding(top = 12.dp)
     ) {
+
         Text(
             text = "미니 테스트",
-            fontFamily = PanelNowFontSemiBold,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.W600,
+            style = PanelNowTheme.typography.titleSb16,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
@@ -68,42 +64,32 @@ fun MiniTestCard(
     seconds: Int,
     points: Int,
 ) {
-    Surface(
-        modifier = modifier
-            .width(250.dp)
-            .height(168.dp),
-        color = White,
-        shape =
-            RoundedCornerShape(10.dp),
-        tonalElevation = 8.dp
-    ) {
         Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(20.dp)
+            modifier = modifier .width(250.dp)
+                .height(168.dp)
+                .padding(8.dp)
+                .background(color = PanelNowTheme.colors.white, shape = RoundedCornerShape(20.dp)).padding(20.dp)
 
         ) {
+
             Text(
                 text = "${seconds}초",
-                fontFamily = PanelNowFontMedium,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.W500
+                style = PanelNowTheme.typography.titleM12,
+                color = PanelNowTheme.colors.gray2
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
                 text = title,
-                fontFamily = PanelNowFontSemiBold,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.W600
+                style = PanelNowTheme.typography.titleSb16,
             )
 
+            Spacer(modifier = Modifier.height(20.dp))
             Spacer(modifier = Modifier.weight(1f))
 
             PointLabel(points = "${points}P")
         }
-    }
 }
 
 @Preview(showBackground = true)

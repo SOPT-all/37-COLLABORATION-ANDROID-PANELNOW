@@ -30,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Home
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.NavigationItem
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.NavigatorBarItem
@@ -100,7 +101,7 @@ fun CustomNavigatorBar(
                 .size(height = 65.dp, width = 63.dp)
                 .offset(y = (-40).dp),
             shape = CircleShape,
-            containerColor = Color(0xFF00A8FF),
+            containerColor = PanelNowTheme.colors.mainBlue,
             contentColor = MaterialTheme.colorScheme.onPrimary
         ) {
             Icon(
