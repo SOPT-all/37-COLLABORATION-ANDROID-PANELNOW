@@ -1,5 +1,6 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -71,17 +72,12 @@ fun SortDropdown(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .border(
-                    width = 1.dp,
-                    color = PanelNowTheme.colors.gray1,
-                    shape = RoundedCornerShape(20.dp)
-                )
-                .clip(RoundedCornerShape(20.dp))
-                .background(
-                    color = PanelNowTheme.colors.white,
-                    shape = RoundedCornerShape(20.dp)
-                ),
+            shape = RoundedCornerShape(20.dp),
+            containerColor = PanelNowTheme.colors.white,
+            border = BorderStroke(
+                width = 1.dp,
+                color = PanelNowTheme.colors.gray1
+            ),
         ) {
             DropdownMenuItem(
                 text = { Text("인기순") },
