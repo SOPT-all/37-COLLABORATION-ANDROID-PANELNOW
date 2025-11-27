@@ -20,14 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
 
 @Composable
 fun MiniTestSection(
-    miniTests: List<MiniTestModel> = miniTestList,
     modifier: Modifier = Modifier,
+    miniTests: List<MiniTestModel> = miniTestList,
 ) {
     Column(
         modifier = modifier
@@ -65,20 +64,9 @@ fun MiniTestCard(
     seconds: Int,
     points: Int,
 ) {
-//    Surface(
-//        modifier = modifier
-//            .width(250.dp)
-//            .height(168.dp),
-//        color = White,
-//        shape =
-//            RoundedCornerShape(20.dp),
-//        tonalElevation = 8.dp
-//    ) {
-
         Column(
-            modifier = modifier .width(250.dp)            // ← 원하는 고정 폭
+            modifier = modifier .width(250.dp)
                 .height(168.dp)
-//                .fillMaxWidth()
                 .padding(8.dp)
                 .background(color = PanelNowTheme.colors.white, shape = RoundedCornerShape(20.dp)).padding(20.dp)
 
@@ -102,7 +90,6 @@ fun MiniTestCard(
 
             PointLabel(points = "${points}P")
         }
-//    }
 }
 
 @Preview(showBackground = true)

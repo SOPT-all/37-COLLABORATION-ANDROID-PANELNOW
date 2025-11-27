@@ -2,10 +2,7 @@ package org.sopt.sopt_collaboration_panelnow.presentation.home.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,9 +28,6 @@ fun PointLabel(
 
         Text(
             text = points,
-//            modifier
-//                .fillMaxWidth()
-//                .padding(1.dp),
             color = PanelNowTheme.colors.mainBlue,
             style = PanelNowTheme.typography.bodyM12,
             textAlign = TextAlign.Center
