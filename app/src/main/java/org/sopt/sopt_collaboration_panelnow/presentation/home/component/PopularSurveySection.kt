@@ -53,7 +53,7 @@ fun PopularSurveySection(
                 color = Gray2
             )
 
-            Spacer(modifier = Modifier.width(2.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
@@ -63,7 +63,7 @@ fun PopularSurveySection(
             )
         }
 
-        Spacer(modifier = Modifier.height(7.dp))
+        Spacer(modifier = Modifier.height(14.5.dp))
 
         Surface(
             modifier = Modifier.fillMaxWidth(), color = White,
