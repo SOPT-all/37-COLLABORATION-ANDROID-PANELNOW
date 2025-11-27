@@ -19,11 +19,18 @@ class PointExchangeViewModel @Inject constructor(
     private val goodsCheckRepository: GoodsCheckRepository,
     private val userRepository: UserRepository,
 ) : ViewModel() {
+    private val _sortOption = MutableStateFlow("default")
+    val sortOption: StateFlow<String> = _sortOption
+
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products
 
     private val _pointExchangeUiState = MutableStateFlow(PointExchangeUiState(currentPoint = 0, usedPoint = 0))
     val pointExchangeUiState: StateFlow<PointExchangeUiState> = _pointExchangeUiState
+
+    fun setSortOption(option: String) {
+        _sortOption.value = option
+    }
 
     fun getProducts(sort: String) {
         viewModelScope.launch {
