@@ -12,7 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
@@ -32,7 +35,8 @@ fun PanelNowTopBar(
             .fillMaxWidth()
             .height(56.dp)
             .background(PanelNowTheme.colors.gray4)
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .padding(WindowInsets.statusBars.asPaddingValues()),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

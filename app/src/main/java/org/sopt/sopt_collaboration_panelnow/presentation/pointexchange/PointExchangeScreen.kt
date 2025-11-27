@@ -21,6 +21,8 @@ import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component
 import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.component.ProductCard
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
@@ -40,6 +42,7 @@ fun PointExchangeRoute(
     val sortOption by viewModel.sortOption.collectAsStateWithLifecycle()
     val products by viewModel.products.collectAsStateWithLifecycle()
     val pointExchangeUiState by viewModel.pointExchangeUiState.collectAsStateWithLifecycle()
+    val gridState = rememberLazyGridState()
 
     LaunchedEffect(Unit) {
         viewModel.getProducts(sortOption)
@@ -49,9 +52,14 @@ fun PointExchangeRoute(
         viewModel.getUserPoint()
     }
 
+    LaunchedEffect(sortOption) {
+        gridState.scrollToItem(0)
+    }
+
     PointExchangeScreen(
         currentPoint = pointExchangeUiState.currentPoint,
         usedPoint = pointExchangeUiState.usedPoint,
+        gridState = gridState,
         selectedSort = sortOption,
         products = products,
         onSortSelected = { selected ->
@@ -69,6 +77,7 @@ fun PointExchangeRoute(
 fun PointExchangeScreen(
     currentPoint: Int,
     usedPoint: Int,
+    gridState: LazyGridState,
     selectedSort: String,
     products: List<Product>,
     onSortSelected: (String) -> Unit,
@@ -115,9 +124,10 @@ fun PointExchangeScreen(
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
+                state = gridState,
                 modifier = Modifier
                     .padding(top = 16.dp, bottom = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp),
                 content = {
                     items(products) { product ->
@@ -154,6 +164,7 @@ private fun PointExchangeScreenPreview() {
         PointExchangeScreen(
             currentPoint = 4500,
             usedPoint = 4000,
+            gridState = rememberLazyGridState(),
             selectedSort = "default",
             products = dummyProducts,
             onSortSelected = {},
