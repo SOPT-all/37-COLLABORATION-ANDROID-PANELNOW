@@ -26,13 +26,12 @@ fun ProductCard(
 ) {
     Column(
         modifier = modifier
-            .width(160.dp)
             .noRippleClickable(onClick)
     ) {
         Box(
             modifier = Modifier
-                .width(160.dp)
-                .height(116.dp)
+                .fillMaxWidth()
+                .aspectRatio(1.38f)
                 .border(
                     width = 0.5.dp,
                     color = PanelNowTheme.colors.gray1,
@@ -48,7 +47,7 @@ fun ProductCard(
             AsyncImage(
                 model = imageUrl,
                 contentDescription = title,
-                modifier = Modifier.fillMaxSize(0.7f)
+                modifier = Modifier.fillMaxSize(0.725f)
             )
         }
 

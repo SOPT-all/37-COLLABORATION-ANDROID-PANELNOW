@@ -117,7 +117,7 @@ fun PointExchangeScreen(
                 columns = GridCells.Fixed(2),
                 modifier = Modifier
                     .padding(top = 16.dp, bottom = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(24.dp),
                 content = {
                     items(products) { product ->
