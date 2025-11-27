@@ -33,10 +33,10 @@ fun PanelNowTopBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .padding(WindowInsets.statusBars.asPaddingValues())
             .height(56.dp)
             .background(PanelNowTheme.colors.gray4)
-            .padding(horizontal = 16.dp)
-            .padding(WindowInsets.statusBars.asPaddingValues()),
+            .padding(horizontal = 16.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
