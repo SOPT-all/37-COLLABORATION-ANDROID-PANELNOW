@@ -15,13 +15,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
@@ -38,9 +35,7 @@ fun MiniTestSection(
     ) {
         Text(
             text = "미니 테스트",
-            fontFamily = PanelNowFontSemiBold,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.W600,
+            style = PanelNowTheme.typography.titleSb20,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
 
@@ -85,18 +80,15 @@ fun MiniTestCard(
         ) {
             Text(
                 text = "${seconds}초",
-                fontFamily = PanelNowFontMedium,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.W500
+                style = PanelNowTheme.typography.titleM12,
+                color = PanelNowTheme.colors.gray2
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
                 text = title,
-                fontFamily = PanelNowFontSemiBold,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.W600
+                style = PanelNowTheme.typography.titleSb16,
             )
 
             Spacer(modifier = Modifier.weight(1f))

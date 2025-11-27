@@ -7,18 +7,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.MainBlue
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
-
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 
 @Composable
 fun CustomButton(
@@ -38,16 +31,13 @@ fun CustomButton(
             bottomStart = 0.dp
         ),
         colors = ButtonDefaults.buttonColors(
-            containerColor = MainBlue,
-            contentColor = White
+            containerColor = PanelNowTheme.colors.mainBlue,
+            contentColor =  PanelNowTheme.colors.white
         )
     ) {
         Text(
             text = text,
-            style = TextStyle(White),
-            fontFamily = PanelNowFontRegular,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.W400
+            style = PanelNowTheme.typography.bodyR16
         )
     }
 }
@@ -55,7 +45,7 @@ fun CustomButton(
 @Preview("ButtonPreview")
 @Composable
 private fun CustomButtonPreview() {
-    Surface(color = Gray4) {
+    Surface(color = PanelNowTheme.colors.gray4) {
         CustomButton(onClick = {}, modifier = Modifier, text = "교환하기")
     }
 }

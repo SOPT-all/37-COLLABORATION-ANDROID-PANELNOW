@@ -11,13 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.MainBlue
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SubBlue
 
 @Composable
@@ -34,10 +31,11 @@ fun PointLabel(points: String, modifier: Modifier = Modifier) {
             modifier
                 .fillMaxWidth()
                 .padding(1.dp),
-            color = MainBlue,
-            fontSize = 12.sp,
-            fontFamily = PanelNowFontMedium,
-            fontWeight = FontWeight.W500,
+            color = PanelNowTheme.colors.mainBlue,
+//            fontSize = 12.sp,
+            style = PanelNowTheme.typography.bodyM12,
+//            fontFamily = PanelNowFontMedium,
+//            fontWeight = FontWeight.W500,
             textAlign = TextAlign.Center
         )
     }

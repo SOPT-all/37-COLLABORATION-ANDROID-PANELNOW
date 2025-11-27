@@ -11,8 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.MiniTestSection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.PointTransactionsSection
@@ -57,7 +55,7 @@ fun HomeScreen(
             modifier = Modifier.fillMaxWidth(),
             miniTests = miniTests
         )
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(80.dp))
     }
 }
 

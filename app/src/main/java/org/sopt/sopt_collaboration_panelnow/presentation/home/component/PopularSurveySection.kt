@@ -12,17 +12,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Icon
-import androidx.compose.ui.text.font.FontWeight
 import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray1
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray2
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray3
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.Gray4
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontMedium
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontRegular
-import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowFontSemiBold
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.White
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.PopularSurveyModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.popularSurveyList
@@ -45,21 +41,17 @@ fun PopularSurveySection(
 
             Text(
                 text = "인기 설문",
-                fontSize = 16.sp,
-                fontFamily = PanelNowFontSemiBold,
-                fontWeight = FontWeight.W600
+                style = PanelNowTheme.typography.titleSb16,
             )
 
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
                 text = "전체보기",
-                fontSize = 12.sp,
-                fontFamily = PanelNowFontMedium,
-                fontWeight = FontWeight.W500,
+                style = PanelNowTheme.typography.bodyR14,
                 color = Gray2
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(2.dp))
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
                 contentDescription = "arrow_right",
@@ -123,14 +115,12 @@ private fun PopularSurveyCard(
         ) {
             Text(
                 text = survey.title,
-                fontFamily = PanelNowFontSemiBold,
-                fontSize = 16.sp
+                style = PanelNowTheme.typography.titleSb16
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "${survey.minutes}분",
-                fontFamily = PanelNowFontRegular,
-                fontSize = 13.sp,
+                style = PanelNowTheme.typography.bodyM12,
                 color = Gray1
             )
         }
