@@ -18,24 +18,24 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.SubBlue
 
 @Composable
-fun PointLabel(points: String, modifier: Modifier = Modifier) {
+fun PointLabel(
+    points: String,
+    modifier: Modifier = Modifier,
+) {
     Box(
         modifier = Modifier
-            .width(48.dp)
-            .height(25.dp)
-            .background(SubBlue, CircleShape),
+            .background(SubBlue, CircleShape)
+            .padding(horizontal = 10.dp, vertical = 4.dp),
         contentAlignment = Alignment.Center
     ) {
+
         Text(
             text = points,
-            modifier
-                .fillMaxWidth()
-                .padding(1.dp),
+//            modifier
+//                .fillMaxWidth()
+//                .padding(1.dp),
             color = PanelNowTheme.colors.mainBlue,
-//            fontSize = 12.sp,
             style = PanelNowTheme.typography.bodyM12,
-//            fontFamily = PanelNowFontMedium,
-//            fontWeight = FontWeight.W500,
             textAlign = TextAlign.Center
         )
     }

@@ -16,9 +16,9 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 @Composable
 fun CustomButton(
     onClick: () -> Unit,
-    text: String,
     modifier: Modifier = Modifier
 ) {
+
     Button(
         onClick = onClick,
         modifier = modifier
@@ -36,16 +36,17 @@ fun CustomButton(
         )
     ) {
         Text(
-            text = text,
+            text = "교환하기",
             style = PanelNowTheme.typography.bodyR16
         )
     }
+
 }
 
 @Preview("ButtonPreview")
 @Composable
 private fun CustomButtonPreview() {
     Surface(color = PanelNowTheme.colors.gray4) {
-        CustomButton(onClick = {}, modifier = Modifier, text = "교환하기")
+        CustomButton(onClick = {}, modifier = Modifier)
     }
 }

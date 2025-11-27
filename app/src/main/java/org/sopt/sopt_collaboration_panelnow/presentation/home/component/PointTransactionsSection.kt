@@ -52,42 +52,55 @@ fun PointSection(
         CustomButton(
             onClick = onExchangeClick,
             modifier = Modifier.width(125.dp),
-            text = "교환하기"
         )
+
     }
 }
 
 @Composable
-private fun PointTitleRow() {
+private fun PointTitleRow(
+    modifier: Modifier = Modifier
+) {
     Row(verticalAlignment = Alignment.CenterVertically) {
+
         Icon(
             painter = painterResource(id = R.drawable.ic_point),
             contentDescription = null,
             tint = Color.Unspecified,
             modifier = Modifier.size(24.dp)
         )
+
         Spacer(Modifier.width(10.dp))
+
         Text(
             text = "나의 포인트",
             style = PanelNowTheme.typography.titleSb16,
         )
+
     }
 }
 
 @Composable
-private fun PointValueRow(pointsText: String) {
+private fun PointValueRow(
+    pointsText: String,
+    modifier: Modifier = Modifier
+) {
     Row(verticalAlignment = Alignment.CenterVertically) {
+
         Text(
             text = pointsText,
             style = PanelNowTheme.typography.titleBd24
         )
+
         Spacer(Modifier.width(10.dp))
+
         Icon(
             painter = painterResource(id = R.drawable.ic_arrow_right),
             contentDescription = null,
             tint = Color.Unspecified,
             modifier = Modifier.size(24.dp)
         )
+
     }
 }
 
@@ -96,18 +109,21 @@ private fun PointValueRow(pointsText: String) {
 fun PointTransactionsSection(
     modifier: Modifier = Modifier,
     pointsText: String = "4,500P",
-    onExchangeClick: () -> Unit = {}
-) {
+    onExchangeClick: () -> Unit = {},
+
+    ) {
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 30.dp)
     ) {
+
         Text(
             text = "포인트 내역",
             modifier = Modifier.padding(horizontal = 16.dp),
             style = PanelNowTheme.typography.titleSb16,
-            )
+        )
 
         Spacer(modifier = Modifier.height(2.dp))
 
@@ -116,11 +132,13 @@ fun PointTransactionsSection(
                 .padding(horizontal = 16.dp, vertical = 8.dp)
                 .fillMaxWidth()
         ) {
+
             Surface(
                 modifier = Modifier.fillMaxWidth(), color = White,
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(12.dp),
                 tonalElevation = 8.dp
             ) {
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -129,6 +147,7 @@ fun PointTransactionsSection(
                     PointSection(pointsText = pointsText, onExchangeClick = onExchangeClick)
                 }
             }
+
             Image(
                 painter = painterResource(id = R.drawable.img_point_character),
                 contentDescription = "Point Character",
@@ -148,6 +167,7 @@ private fun PointTransactionsSectionPreview() {
     Scaffold(
         containerColor = Gray4
     ) { innerPadding ->
+
         Box(
             modifier = Modifier
                 .padding(innerPadding)
@@ -158,5 +178,6 @@ private fun PointTransactionsSectionPreview() {
                 pointsText = "4,500P",
             )
         }
+
     }
 }

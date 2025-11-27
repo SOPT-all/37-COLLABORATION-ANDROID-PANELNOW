@@ -18,6 +18,7 @@ import org.sopt.sopt_collaboration_panelnow.R
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
+import org.sopt.sopt_collaboration_panelnow.presentation.home.screen.HomeRoute
 import org.sopt.sopt_collaboration_panelnow.presentation.home.screen.HomeScreen
 import org.sopt.sopt_collaboration_panelnow.presentation.pointdetail.PointDetailRoute
 import org.sopt.sopt_collaboration_panelnow.presentation.pointexchange.PointExchangeRoute
@@ -31,43 +32,44 @@ fun NaviHost(
     NavHost(
         navController = navController,
         startDestination = Home::class,
-        modifier = Modifier
+        modifier = Modifier     .fillMaxSize()
             .padding(innerPadding)
-            .fillMaxSize()
+
     ) {
-        composable<Home> {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(PanelNowTheme.colors.gray4)
-            ) {
-                PanelNowTheme {
-                    PanelNowTopBar(
-                        content = {
-                            Icon(
-                                painter = painterResource(id = R.drawable.logo),
-                                contentDescription = stringResource(R.string.top_bar_logo),
-                                tint = Color.Unspecified,
-                            )
-                        }
-                    )
-                }
-                HomeScreen(
-                    miniTests = miniTestList,
-                    onExchangeClick = {
-                        navController.navigate(Exchange) {
-                            popUpTo(Home) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
-                )
-
-            }
-
-        }
+        composable<Home> { HomeRoute(navController) }
+//        composable<Home> {
+//            Column(
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .background(PanelNowTheme.colors.gray4)
+//            ) {
+//                PanelNowTheme {
+//                    PanelNowTopBar(
+//                        content = {
+//                            Icon(
+//                                painter = painterResource(id = R.drawable.logo),
+//                                contentDescription = stringResource(R.string.top_bar_logo),
+//                                tint = Color.Unspecified,
+//                            )
+//                        }
+//                    )
+//                }
+//                HomeScreen(
+//                    miniTests = miniTestList,
+//                    onExchangeClick = {
+//                        navController.navigate(Exchange) {
+//                            popUpTo(Home) {
+//                                saveState = true
+//                            }
+//                            launchSingleTop = true
+//                            restoreState = true
+//                        }
+//                    }
+//                )
+//
+//            }
+//
+//        }
         // 이 안에 각자 스크린 넣으시면 됩니다
         composable<Survey> { }
         composable<Event> { }

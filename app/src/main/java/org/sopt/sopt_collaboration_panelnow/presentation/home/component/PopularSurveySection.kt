@@ -33,6 +33,7 @@ fun PopularSurveySection(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -51,7 +52,9 @@ fun PopularSurveySection(
                 style = PanelNowTheme.typography.bodyR14,
                 color = Gray2
             )
+
             Spacer(modifier = Modifier.width(2.dp))
+
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_right),
                 contentDescription = "arrow_right",
@@ -64,13 +67,14 @@ fun PopularSurveySection(
 
         Surface(
             modifier = Modifier.fillMaxWidth(), color = White,
-            shape = RoundedCornerShape(10.dp),
+            shape = RoundedCornerShape(12.dp),
             tonalElevation = 8.dp
         ) {
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 surveys.forEach { survey ->
@@ -79,6 +83,7 @@ fun PopularSurveySection(
                     )
                 }
             }
+
         }
     }
 }
@@ -91,12 +96,13 @@ private fun PopularSurveyCard(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
+
         Box(
             modifier = Modifier
                 .size(56.dp)
                 .background(
                     color = Gray3,
-                    shape = RoundedCornerShape(18.dp)
+                    shape = RoundedCornerShape(10.dp)
                 ),
             contentAlignment = Alignment.Center
         ) {
@@ -113,16 +119,20 @@ private fun PopularSurveyCard(
         Column(
             modifier = Modifier.weight(1f)
         ) {
+
             Text(
                 text = survey.title,
                 style = PanelNowTheme.typography.titleSb16
             )
+
             Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = "${survey.minutes}분",
                 style = PanelNowTheme.typography.bodyM12,
                 color = Gray1
             )
+
         }
 
         PointLabel(

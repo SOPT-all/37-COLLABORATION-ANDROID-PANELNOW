@@ -21,7 +21,6 @@ class HomeViewModel @Inject constructor(
 
     fun getCurrentPoint() {
         viewModelScope.launch {
-            delay(200)
             userRepository.getUser(6)
                 .onSuccess { user ->
                     _homeUiState.update {
