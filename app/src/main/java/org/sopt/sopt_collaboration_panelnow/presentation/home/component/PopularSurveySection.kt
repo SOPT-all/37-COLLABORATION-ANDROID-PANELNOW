@@ -56,10 +56,9 @@ fun PopularSurveySection(
             Spacer(modifier = Modifier.width(12.dp))
 
             Icon(
-                painter = painterResource(id = R.drawable.ic_arrow_right),
+                painter = painterResource(id = R.drawable.ic_survey_arrow_right),
                 contentDescription = "arrow_right",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(24.dp)
             )
         }
 
@@ -99,7 +98,7 @@ private fun PopularSurveyCard(
 
         Box(
             modifier = Modifier
-                .size(56.dp)
+                .size(40.dp)
                 .background(
                     color = Gray3,
                     shape = RoundedCornerShape(10.dp)
@@ -125,7 +124,7 @@ private fun PopularSurveyCard(
                 style = PanelNowTheme.typography.titleSb16
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Text(
                 text = "${survey.minutes}분",
