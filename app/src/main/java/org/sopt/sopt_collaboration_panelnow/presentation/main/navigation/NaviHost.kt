@@ -21,9 +21,7 @@ fun NaviHost(
     NavHost(
         navController = navController,
         startDestination = Home::class,
-        modifier = Modifier     .fillMaxSize()
-            .padding(innerPadding)
-
+        modifier = Modifier.fillMaxSize(),
     ) {
 
         composable<Home> { HomeRoute(navController) }
