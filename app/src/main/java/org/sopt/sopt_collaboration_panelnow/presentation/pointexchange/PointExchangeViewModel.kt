@@ -46,7 +46,7 @@ class PointExchangeViewModel @Inject constructor(
     fun getUserPoint() {
         viewModelScope.launch {
             delay(200)
-            userRepository.getUser(6)
+            userRepository.getUser(1)
                 .onSuccess { user ->
                     _pointExchangeUiState.update {
                         it.copy(

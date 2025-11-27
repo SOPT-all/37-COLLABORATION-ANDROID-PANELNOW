@@ -1,25 +1,34 @@
 package org.sopt.sopt_collaboration_panelnow.presentation.home.screen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import org.sopt.sopt_collaboration_panelnow.R
+import org.sopt.sopt_collaboration_panelnow.core.designsystem.component.PanelNowTopBar
 import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowTheme
-import org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.MiniTestSection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.PointTransactionsSection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.component.PopularSurveySection
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.MiniTestModel
 import org.sopt.sopt_collaboration_panelnow.presentation.home.model.miniTestList
+import org.sopt.sopt_collaboration_panelnow.presentation.home.viewmodel.HomeViewModel
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Exchange
 import org.sopt.sopt_collaboration_panelnow.presentation.main.navigation.Home
 
@@ -38,6 +47,7 @@ fun HomeRoute(
         }
     )
 }
+
 @Composable
 fun HomeScreen(
     miniTests: List<MiniTestModel>,
@@ -59,6 +69,15 @@ fun HomeScreen(
             .verticalScroll(scrollState)
             .background(PanelNowTheme.colors.gray4)
     ) {
+        PanelNowTopBar(
+            content = {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.logo),
+                    contentDescription = null,
+                    tint = Color.Unspecified
+                )
+            }
+        )
 
         PointTransactionsSection(
             pointsText = "%,dP".format(homeUiState.currentPoint),

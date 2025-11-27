@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(
 
     fun getCurrentPoint() {
         viewModelScope.launch {
-            userRepository.getUser(6)
+            userRepository.getUser(1)
                 .onSuccess { user ->
                     _homeUiState.update {
                         it.copy(currentPoint = user.currentPoint)
