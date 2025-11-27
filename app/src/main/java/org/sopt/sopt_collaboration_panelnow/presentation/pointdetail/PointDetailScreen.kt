@@ -119,6 +119,7 @@ fun PointDetailScreen(
         PointPaySection(
             label = "교환하기",
             myPoint = currentPoint.toString(),
+            productPrice = goodsCheckState.price,
             modifier = modifier
                 .align(alignment = Alignment.BottomCenter),
             canPayed = canPurchase,

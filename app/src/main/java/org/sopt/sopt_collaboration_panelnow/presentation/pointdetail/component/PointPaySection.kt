@@ -30,15 +30,29 @@ import org.sopt.sopt_collaboration_panelnow.core.designsystem.theme.PanelNowThem
 fun PointPaySection(
     label: String,
     myPoint: String,
+    productPrice: Int,
     modifier: Modifier = Modifier,
     canPayed: Boolean = false,
     onPayClick: () -> Unit = {},
     @DrawableRes iconRes: Int? = null,
 ) {
+    val currentPoint = myPoint.toIntOrNull() ?: 0
+    val shortagePoint = productPrice - currentPoint
+
+    val buttonLabel = if (canPayed) label else "${shortagePoint.toString()} 포인트가 부족해요"
+
     if (canPayed) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
+                .dropShadow(
+                    shape = RoundedCornerShape(0.dp),
+                    color = Color.Black.copy(alpha = 0.1f),
+                    blur = 8.dp,
+                    offsetY = (-4).dp,
+                    offsetX = 0.dp,
+                    spread = 0.dp
+                )
                 .background(color = PanelNowTheme.colors.white)
                 .padding(horizontal = 16.dp, vertical = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -66,7 +80,7 @@ fun PointPaySection(
             )
 
             PayButton(
-                label = label,
+                label = buttonLabel,
                 onPayClick = onPayClick,
                 modifier = Modifier.weight(1f),
                 isEnabled = true
@@ -76,12 +90,20 @@ fun PointPaySection(
         Box(
             modifier = modifier
                 .fillMaxWidth()
+                .dropShadow(
+                    shape = RoundedCornerShape(0.dp),
+                    color = Color.Black.copy(alpha = 0.1f),
+                    blur = 8.dp,
+                    offsetY = (-4).dp,
+                    offsetX = 0.dp,
+                    spread = 0.dp
+                )
                 .background(color = PanelNowTheme.colors.white)
                 .padding(horizontal = 16.dp, vertical = 16.dp)
         ) {
             PayButton(
-                label = label,
-                onPayClick = onPayClick,
+                label = buttonLabel,
+                onPayClick = {},
                 modifier = Modifier.fillMaxWidth(),
                 isEnabled = false
             )
@@ -136,7 +158,6 @@ private fun PayButton(
                     bottomEnd = 32.dp
                 )
             )
-            .noRippleClickable(onClick = onPayClick)
             .padding(vertical = 16.dp)
     }
 
@@ -163,14 +184,16 @@ private fun ReviewPointPaySection() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             PointPaySection(
-                label = "500P 교환하기",
-                myPoint = "4500",
+                label = "교환하기",
+                myPoint = "2000",
+                productPrice = 5000,
                 canPayed = false,
                 iconRes = R.drawable.ic_point
             )
             PointPaySection(
-                label = "500P 교환하기",
-                myPoint = "4500",
+                label = "교환하기",
+                myPoint = "6000",
+                productPrice = 5000,
                 canPayed = true,
                 iconRes = R.drawable.ic_point
             )
